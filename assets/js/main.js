@@ -1,4 +1,4 @@
-/* The Inward Lab: nav, progress, reveals, FAQ, testimonials. No dependencies. */
+/* The Inward Lab: nav, progress, rings, reveals, FAQ, form topic. No dependencies. */
 (function () {
   'use strict';
   var doc = document, root = doc.documentElement;
@@ -8,17 +8,20 @@
   syncReduce(); if (mqR.addEventListener) mqR.addEventListener('change', syncReduce);
 
   /* ---- one shared scroll frame: a single read per frame, writes only transform / class ---- */
+  var rings = mqR.matches ? null : doc.getElementById('rings'), heroEl = doc.getElementById('top'), heroH = heroEl ? heroEl.offsetHeight : 1;
   var nav = doc.getElementById('nav'), bar = doc.getElementById('progress'), tick = false, lastY = 0;
   function frame() {
     tick = false;
     var y = window.pageYOffset, max = root.scrollHeight - window.innerHeight;
     bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0).toFixed(4) + ')';
     nav.classList.toggle('scrolled', y > 40);
+    /* rings move inward as the hero leaves: scale and turn follow scroll, transform only */
+    if (rings && y < heroH) { var p = y / heroH; rings.style.transform = 'scale(' + (1 - p * .18).toFixed(4) + ') rotate(' + (p * 12).toFixed(2) + 'deg)'; }
     if (menuOpen && Math.abs(y - lastY) > 12) closeMenu(false);   /* scrolling closes the panel */
   }
   function onScroll() { if (!tick) { tick = true; requestAnimationFrame(frame); } }
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('resize', function () { heroH = heroEl ? heroEl.offsetHeight : 1; onScroll(); }, { passive: true });
 
   /* ---- mobile menu: right-hand panel, X, scrim, Esc, swipe, scroll ---- */
   var panel = doc.getElementById('navLinks'), burger = doc.getElementById('burger'),
@@ -67,28 +70,13 @@
   }
   [].forEach.call(doc.querySelectorAll('[data-kindle]'), splitWords);
 
-  /* ---- testimonials: manual, one at a time (all stacked without JS) ---- */
-  var tl = doc.getElementById('testiList'), tn = doc.getElementById('testiNav');
-  if (tl && tn) {
-    var items = [].slice.call(tl.querySelectorAll('.testi-item')), cur = 0;
-    items.forEach(function (it) { it.removeAttribute('data-v'); });
-    tl.closest('.testi').classList.add('js-testi');
-    var dots = items.map(function (it, i) {
-      var b = doc.createElement('button'); b.type = 'button'; b.className = 'testi-dot';
-      b.setAttribute('aria-label', 'Testimonial ' + (i + 1) + ' of ' + items.length);
-      b.addEventListener('click', function () { show(i); }); tn.appendChild(b); return b;
-    });
-    function show(i) {
-      cur = i;
-      items.forEach(function (it, j) { it.hidden = j !== i; });
-      dots.forEach(function (d, j) { d.setAttribute('aria-current', j === i ? 'true' : 'false'); });
-    }
-    tn.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { show((cur + 1) % items.length); dots[cur].focus(); }
-      if (e.key === 'ArrowLeft') { show((cur + items.length - 1) % items.length); dots[cur].focus(); }
-    });
-    show(0);
-  }
+  /* ---- links that open the form with a topic chosen ---- */
+  var sel = doc.getElementById('serviceSelect');
+  doc.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-subject]'); if (!a || !sel) return;
+    var want = a.getAttribute('data-subject').toLowerCase();
+    [].forEach.call(sel.options, function (o, i) { if (o.text.toLowerCase() === want) sel.selectedIndex = i; });
+  });
 
   /* ---- FAQ ---- */
   var faq = [].slice.call(doc.querySelectorAll('.faq-item'));

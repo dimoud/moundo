@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Inward Lab — Integrative Life Coaching</title>
-<meta name="theme-color" content="#ECEAE2">
+<title>The Inward Lab — Integrative Life Coaching with Alex Moudiotis</title>
+<meta name="theme-color" content="#1C2419">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>
 /* hidden motion states exist only while this class is present; removed after 2.5 s if the script never reports ready */
@@ -16,12 +16,10 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
 <link rel="preload" href="assets/img/alex-bw.webp" as="image" type="image/webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/sections.css">
-<link rel="stylesheet" href="assets/css/booking.css">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="i-arr" viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-tick" viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-plus" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
 </svg>
 <a class="skip" href="#main">Skip to content</a>
@@ -36,14 +34,13 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
     <div class="nav-right">
       <nav class="nav-links" id="navLinks" aria-label="Main">
         <button class="panel-close" type="button" id="navClose" aria-label="Close menu"><span aria-hidden="true">×</span></button>
-        <a href="#approach">Approach</a>
         <a href="#help">What I help with</a>
         <a href="#method">The method</a>
         <a href="#work">Work together</a>
         <a href="#about">About</a>
-        <a class="btn btn-primary nav-cta-panel" href="#book">Book a call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
+        <a class="btn btn-primary nav-cta-panel" href="#contact">Get in touch <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
       </nav>
-      <a class="btn btn-primary nav-cta-desktop" href="#book">Book a call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
+      <a class="btn btn-primary nav-cta-desktop" href="#contact">Get in touch <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
       <button class="burger" type="button" id="burger" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span></button>
     </div>
   </div>
@@ -52,304 +49,198 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
 
 <main id="main">
 
-<!-- 1 · first screen -->
-<section class="hero" id="top" aria-labelledby="heroTitle">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow" data-v="rise" style="--d:0ms">Integrative life coaching · London</span>
-        <h1 class="display" id="heroTitle">
-          <span class="word" style="--i:0"><span>Clarity&nbsp;</span></span><span class="word" style="--i:1"><span>isn’t&nbsp;</span></span><span class="word" style="--i:2"><span>the&nbsp;</span></span><span class="word" style="--i:3"><span>goal.</span></span><br>
-          <span class="move" id="moveWord">Movement&nbsp;</span><span class="word" style="--i:5"><span>is.</span></span>
-        </h1>
-        <p class="hero-sub lead" data-v="rise" style="--d:520ms">Integrative coaching for people ready to move beyond the patterns that keep repeating — and step forward with steadiness, not just insight.</p>
-        <div class="hero-cta" data-v="rise" style="--d:620ms">
-          <a class="btn btn-primary btn-lg" href="#book">Book a free discovery call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
-          <a class="tlink" href="#method">See how the work works <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
-        </div>
-        <p class="hero-note" data-v="rise" style="--d:720ms">Rated <b>5.0</b> by clients · <b>IAPC&amp;M</b> Accredited Elite Coach</p>
+<!-- 1 · first screen (dark): words rise, "Movement" springs, rings converge, portrait settles -->
+<section class="hero dark" id="top" aria-labelledby="heroTitle">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow" data-v="rise" style="--d:0ms">Integrative life coaching · London &amp; online</span>
+      <h1 class="display" id="heroTitle">
+        <span class="word" style="--i:0"><span>Clarity&nbsp;</span></span><span class="word" style="--i:1"><span>isn’t&nbsp;</span></span><span class="word" style="--i:2"><span>the&nbsp;</span></span><span class="word" style="--i:3"><span>goal.</span></span><br>
+        <span class="move" id="moveWord" title="Drag me">Movement&nbsp;</span><span class="word" style="--i:5"><span>is.</span></span>
+      </h1>
+      <p class="hero-sub lead" data-v="rise" style="--d:560ms">I help people move beyond repeating patterns and step forward with clarity and confidence.</p>
+      <div class="hero-cta" data-v="rise" style="--d:660ms">
+        <a class="btn btn-light btn-lg" href="#contact" data-subject="Discovery call">Book a discovery call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
+        <a class="tlink" href="#method">How the work works <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
       </div>
-      <div class="hero-media">
-        <div class="hero-photo"><img src="assets/img/alex-bw.webp" width="402" height="432" alt="Alex Moudiotis, integrative life coach" fetchpriority="high"></div>
-        <div class="photo-tag" data-v="rise" style="--d:900ms">London · worldwide online</div>
-        <div class="photo-chip" data-v="stamp" style="--d:1000ms">
-          <div class="badge" aria-hidden="true">L5</div>
-          <div><div class="lbl">Accredited</div><div class="val">Elite Life Coach<br>IAPC&amp;M · Level 5</div></div>
-        </div>
-      </div>
+    </div>
+    <div class="hero-media">
+      <svg class="rings" id="rings" viewBox="-300 -300 600 600" aria-hidden="true" focusable="false">
+        <circle r="292" style="--k:0"/><circle r="252" style="--k:1"/><circle r="212" style="--k:2"/><circle r="172" style="--k:3"/>
+      </svg>
+      <div class="hero-photo"><img src="assets/img/alex-bw.webp" width="402" height="432" alt="Alex Moudiotis, founder of The Inward Lab" fetchpriority="high"></div>
+      <p class="photo-chip" data-v="stamp" style="--d:1000ms"><span class="lbl">Accredited</span> Elite Life Coach · IAPC&amp;M Level&nbsp;5</p>
     </div>
   </div>
 </section>
 
-<!-- 2 · the facts -->
-<section class="trust" aria-label="At a glance">
+<!-- 2 · statement: words kindle, foot rises, rule draws -->
+<section class="section statement" id="approach" aria-labelledby="appr-h">
   <div class="container">
-    <ul class="trust-grid">
-      <li class="trust-item" data-v="rise"><div class="num">5.0</div><div class="cap">Average client rating</div></li>
-      <li class="trust-item" data-v="rise"><div class="num">Level 5</div><div class="cap">IAPC&amp;M accredited elite coach</div></li>
-      <li class="trust-item" data-v="rise"><div class="num">1:1</div><div class="cap">Private, confidential sessions</div></li>
-      <li class="trust-item" data-v="rise"><div class="num">London</div><div class="cap">In person &amp; online, worldwide</div></li>
-    </ul>
-  </div>
-</section>
-
-<!-- 3 · why you are here -->
-<section class="section empathy band-sage" id="approach" aria-labelledby="appr-h">
-  <div class="container">
-    <span class="eyebrow" data-v="rise">Why you’re here</span>
-    <h2 class="big" id="appr-h" data-kindle>Something that used to work — a relationship, a direction, a version of you — <em>no longer does</em>. You don’t want more advice. You want change that <em>holds</em>.</h2>
-    <div class="empathy-foot">
-      <p class="lead" data-v="rise">Most coaching stops at insight — a tidy realisation that fades by Monday. The Inward Lab is built to take you further: from understanding the pattern to actually living differently.</p>
+    <span class="eyebrow" data-v="slide">Why people come</span>
+    <h2 class="big" id="appr-h" data-kindle>A break-up, a career that no longer fits, a life that changed shape. You understand the pattern. <em>You want to move.</em></h2>
+    <span class="rule" data-v="draw-x" aria-hidden="true"></span>
+    <div class="statement-foot">
+      <p class="lead" data-v="rise">The approach is intuitive and reflective, but also structured: every insight is tied to an action you take into real life.</p>
       <a class="tlink" href="#method" data-v="rise">Inside the method <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
     </div>
   </div>
 </section>
 
-<!-- 4 · what I help with -->
-<section class="section" id="help" aria-labelledby="help-h">
+<!-- 3 · areas: heading rises, rows slide, numbers stamp -->
+<section class="section areas" id="help" aria-labelledby="help-h">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow" data-v="rise">Areas we work on</span>
-      <h2 class="h2" id="help-h" data-v="rise">What I help people with.</h2>
-      <p class="lead" data-v="rise">You don’t need to have it all figured out to begin. Most people arrive with a feeling, not a plan. Here’s where that feeling usually lives.</p>
+      <span class="eyebrow" data-v="rise">What I help with</span>
+      <h2 class="h2" id="help-h" data-v="rise">Four places where change usually starts.</h2>
     </div>
-    <ul class="help-grid">
-      <li><a class="help-card" href="#book" data-focus="Relationships &amp; break-ups" data-v="settle">
-        <span class="idx">01</span><h3 class="h3">Relationships
-&amp; break-ups</h3>
-        <p class="desc">Move from pain and confusion to clarity and strength.</p>
-        <div class="more"><div>For the months after a break-up, or a relationship that keeps you small — we untangle what happened and rebuild your footing.</div></div>
-        <ul class="signals"><li>heartbreak</li><li>dating again</li><li>co-parenting</li></ul></a></li>
-      <li><a class="help-card" href="#book" data-focus="Boundaries &amp; self-worth" data-v="settle">
-        <span class="idx">02</span><h3 class="h3">Boundaries
-&amp; self-worth</h3>
-        <p class="desc">Know your worth and hold your limits — without the guilt.</p>
-        <div class="more"><div>For the chronic people-pleaser running on empty. We turn “I should” into a clear, self-respecting “no.”</div></div>
-        <ul class="signals"><li>people-pleasing</li><li>burnout</li><li>saying no</li></ul></a></li>
-      <li><a class="help-card" href="#book" data-focus="Life transitions" data-v="settle">
-        <span class="idx">03</span><h3 class="h3">Life
-transitions</h3>
-        <p class="desc">Navigate a new chapter on steady ground, not shaky guesswork.</p>
-        <div class="more"><div>A career pivot, a move, a redefinition of who you are. We make the leap deliberate instead of frightening.</div></div>
-        <ul class="signals"><li>career pivot</li><li>relocation</li><li>new chapter</li></ul></a></li>
-      <li><a class="help-card" href="#book" data-focus="Confidence &amp; direction" data-v="settle">
-        <span class="idx">04</span><h3 class="h3">Confidence
-&amp; direction</h3>
-        <p class="desc">Trade endless second-guessing for a direction you trust.</p>
-        <div class="more"><div>For the high-functioning over-thinker. We quiet the noise and find the decision that’s actually yours.</div></div>
-        <ul class="signals"><li>decision paralysis</li><li>imposter feelings</li><li>purpose</li></ul></a></li>
+    <ul class="area-list">
+      <li><a class="area" href="#contact" data-subject="Relationships &amp; break-ups" data-v="slide"><span class="n" data-v="stamp">01</span><span class="t">Relationships &amp; break-ups</span><span class="d">Move from pain and confusion to clarity and strength.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
+      <li><a class="area" href="#contact" data-subject="Boundaries &amp; self-worth" data-v="slide"><span class="n" data-v="stamp">02</span><span class="t">Boundaries &amp; self-worth</span><span class="d">Know your worth, honour your limits.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
+      <li><a class="area" href="#contact" data-subject="Purpose &amp; career direction" data-v="slide"><span class="n" data-v="stamp">03</span><span class="t">Purpose &amp; career direction</span><span class="d">Discover purpose, shape your future.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
+      <li><a class="area" href="#contact" data-subject="Confidence &amp; emotional balance" data-v="slide"><span class="n" data-v="stamp">04</span><span class="t">Confidence &amp; emotional balance</span><span class="d">Find your centre, trust your voice, and move through life with calm confidence.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
     </ul>
   </div>
 </section>
 
-<!-- 5 · the method -->
-<div class="method-wrap" id="method">
-  <section class="method" aria-labelledby="method-h">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow" data-v="rise">The Inward Lab method</span>
-        <h2 class="h2" id="method-h" data-v="rise">Coaching with a method, not just a mood.</h2>
-        <p class="lead" data-v="rise">“Lab” isn’t decoration. The work follows a deliberate arc — so progress feels structured and real, never vague or open-ended.</p>
-      </div>
-      <ol class="method-steps">
-        <li class="method-step"><span class="rule" data-v="draw-x"></span><span class="mnum" data-v="stamp">01</span>
-          <div data-v="slide"><span class="mtag">Week 0 · free</span><h3>Land</h3></div>
-          <p class="mdesc" data-v="rise">A relaxed discovery call. We name what’s really going on and whether this work is right for you — no pressure, no pitch.</p></li>
-        <li class="method-step"><span class="rule" data-v="draw-x"></span><span class="mnum" data-v="stamp">02</span>
-          <div data-v="slide"><span class="mtag">Sessions 1–2</span><h3>Map</h3></div>
-          <p class="mdesc" data-v="rise">We map the pattern beneath the problem: where it began, what it protects, and what it quietly costs you now.</p></li>
-        <li class="method-step"><span class="rule" data-v="draw-x"></span><span class="mnum" data-v="stamp">03</span>
-          <div data-v="slide"><span class="mtag">The core work</span><h3>Move</h3></div>
-          <p class="mdesc" data-v="rise">Small, deliberate experiments between sessions. This is where insight stops being a thought and becomes a different way of living.</p></li>
-        <li class="method-step"><span class="rule" data-v="draw-x"></span><span class="mnum" data-v="stamp">04</span>
-          <div data-v="slide"><span class="mtag">Integration</span><h3>Hold</h3></div>
-          <p class="mdesc" data-v="rise">We build the structures and self-trust that keep the change in place — long after our sessions end.</p></li>
-      </ol>
+<!-- 4 · method (dark): line draws, numbers stamp, titles slide, text rises -->
+<section class="section method dark" id="method" aria-labelledby="method-h">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-v="rise">The Inward Lab method</span>
+      <h2 class="h2" id="method-h" data-v="rise">Insight is the start. The work is what you do with it.</h2>
     </div>
-  </section>
-</div>
+    <ol class="steps">
+      <li class="step"><span class="rule" data-v="draw-x" aria-hidden="true"></span><span class="sn" data-v="stamp">01</span><h3 class="h3" data-v="slide">Land</h3><p data-v="rise">A first conversation. We name what is really going on and whether this work fits you.</p></li>
+      <li class="step"><span class="rule" data-v="draw-x" aria-hidden="true"></span><span class="sn" data-v="stamp">02</span><h3 class="h3" data-v="slide">Map</h3><p data-v="rise">We map the pattern under the problem: where it began, what it protects, what it costs you now.</p></li>
+      <li class="step"><span class="rule" data-v="draw-x" aria-hidden="true"></span><span class="sn" data-v="stamp">03</span><h3 class="h3" data-v="slide">Move</h3><p data-v="rise">Small, deliberate experiments between sessions. Insight becomes a different way of living.</p></li>
+      <li class="step"><span class="rule" data-v="draw-x" aria-hidden="true"></span><span class="sn" data-v="stamp">04</span><h3 class="h3" data-v="slide">Hold</h3><p data-v="rise">We build the structure and self-trust that keep the change in place after our sessions end.</p></li>
+    </ol>
+  </div>
+</section>
 
-<!-- 6 · ways to work together -->
+<!-- 5 · ways: heading rises, panels settle, links slide -->
 <section class="section" id="work" aria-labelledby="work-h">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow" data-v="rise">Ways to work together</span>
-      <h2 class="h2" id="work-h" data-v="rise">Choose the door that fits.</h2>
-      <p class="lead" data-v="rise">Everything starts with a free call — there’s no wrong way in, and no obligation to continue until it feels right.</p>
+      <h2 class="h2" id="work-h" data-v="rise">Three ways in.</h2>
     </div>
-    <ul class="work-grid">
-      <li><article class="work-card" data-v="settle">
-        <div class="kind">Start here</div><h3 class="h3">Discovery Call</h3>
-        <div class="price">Free <small>30 minutes</small></div>
-        <p class="wdesc">A short, honest conversation to understand where you are and whether we’re the right fit.</p>
-        <ul class="wfeat"><li>No commitment, no pitch</li><li>Get a feel for how I work</li><li>Leave with one clear next step</li></ul>
-        <div class="wact"><a class="tlink" href="#book">Book a call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></div></article></li>
-      <li><article class="work-card feature" data-v="settle" style="--d:60ms">
-        <div class="ribbon">Most chosen</div><div class="kind">1:1 coaching</div><h3 class="h3">The Inward Programme</h3>
-        <div class="price">£120 <small>per 60-min session</small></div>
-        <p class="wdesc">Ongoing one-to-one sessions designed to explore patterns, build clarity, and support lasting change.</p>
-        <ul class="wfeat"><li>Fortnightly 1:1 sessions</li><li>Between-session support by message</li><li>Personalised practices &amp; reflections</li><li>Discounted 6-session packages</li></ul>
-        <div class="wact"><a class="btn btn-primary" href="#book">Begin 1:1 coaching <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></div></article></li>
-      <li><article class="work-card" data-v="settle" style="--d:120ms">
-        <div class="kind">Groups &amp; teams</div><h3 class="h3">Workshops &amp; Training</h3>
-        <div class="price">Bespoke <small>half / full day</small></div>
-        <p class="wdesc">Interactive sessions combining reflection, creativity, and practical tools for insight that travels into real life.</p>
-        <ul class="wfeat"><li>For teams &amp; small groups</li><li>Tailored to your theme</li><li>In person or online</li></ul>
-        <div class="wact"><a class="tlink" href="#book">Enquire <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></div></article></li>
+    <ul class="ways">
+      <li><article class="way" data-v="settle"><span class="kind">Start here</span><h3 class="h3">Discovery call</h3><p>A short conversation to see whether we are the right fit, with no obligation to continue.</p><a class="tlink" href="#contact" data-subject="Discovery call" data-v="slide">Request a call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></article></li>
+      <li><article class="way way-deep" data-v="settle"><span class="kind">The core work</span><h3 class="h3">1:1 coaching</h3><p>Ongoing sessions focused on your patterns, clarity and lasting change. In London or online.</p><a class="tlink" href="#contact" data-subject="1:1 coaching" data-v="slide">Ask about 1:1 <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></article></li>
+      <li><article class="way" data-v="settle"><span class="kind">Groups &amp; teams</span><h3 class="h3">Workshops &amp; training</h3><p>Interactive sessions that combine reflection, creativity and practical tools.</p><a class="tlink" href="#contact" data-subject="Workshops &amp; training" data-v="slide">Enquire <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></article></li>
     </ul>
   </div>
 </section>
 
-<!-- 7 · client experiences -->
-<section class="section testi" id="testimonials" aria-labelledby="testi-h">
+<!-- 6 · voice: quote kindles, attribution rises, mark stamps -->
+<section class="section voice" aria-labelledby="voice-h">
   <div class="container">
-    <span class="eyebrow" data-v="rise">Client experiences</span>
-    <h2 class="sr-only" id="testi-h">What clients say</h2>
-    <ul class="testi-list" id="testiList">
-      <li class="testi-item" data-v="rise"><figure><blockquote class="testi-quote">Working with Alex helped me find myself again. He gave me the space to grieve, but also the courage to rebuild. Today I feel stronger, more grounded, and more myself than I’ve ever been.</blockquote>
-        <figcaption class="testi-meta"><span class="av" aria-hidden="true">K</span><span><span class="who">Kathy</span><br><span class="ctx">after a loss · 6 months</span></span></figcaption></figure></li>
-      <li class="testi-item" data-v="rise"><figure><blockquote class="testi-quote">I came in stuck in the same arguments, the same doubts. We didn’t just talk — we changed how I actually respond. The difference is in my real life, not just my notebook.</blockquote>
-        <figcaption class="testi-meta"><span class="av" aria-hidden="true">D</span><span><span class="who">Daniel</span><br><span class="ctx">relationships · 4 months</span></span></figcaption></figure></li>
-      <li class="testi-item" data-v="rise"><figure><blockquote class="testi-quote">I’d done therapy for years and understood my patterns perfectly. Alex was the first person to help me move. Calm, sharp, never preachy. Worth every session.</blockquote>
-        <figcaption class="testi-meta"><span class="av" aria-hidden="true">P</span><span><span class="who">Priya</span><br><span class="ctx">confidence &amp; direction</span></span></figcaption></figure></li>
-    </ul>
-    <div class="testi-nav" id="testiNav" role="group" aria-label="Choose a testimonial"></div>
+    <h2 class="sr-only" id="voice-h">What a client says</h2>
+    <figure class="quote">
+      <span class="qmark" data-v="stamp" aria-hidden="true">“</span>
+      <blockquote class="h2" data-kindle>It was giving me comfort to be in Alex’s presence.</blockquote>
+      <figcaption data-v="rise">Vera, client</figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- 8 · about -->
-<section class="section" id="about" aria-labelledby="about-h">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-photo" data-v="settle"><img src="assets/img/alex-color.webp" width="785" height="730" loading="lazy" alt="Alex Moudiotis"></div>
-      <div class="about-body">
-        <span class="eyebrow" data-v="rise">Meet Alex</span>
-        <h2 class="h2" id="about-h" data-v="rise">A coach who’s done<br class="d"> the inward work too.</h2>
-        <p class="first" data-v="rise">I’m Alex Moudiotis — a coach with a background in teaching and the arts, based in London, where creativity and connection shape how I work.</p>
-        <p data-v="rise">I founded The Inward Lab because I kept meeting people who were articulate about their problems but stuck inside them. Understanding isn’t the same as change. My work lives in the gap between the two.</p>
-        <p data-v="rise">As an accredited Elite Life Coach (Level 5, IAPC&amp;M), I combine structured training with ongoing practice — and a deep belief that people already hold more answers than they think.</p>
-        <div class="about-sig" aria-hidden="true">Alex</div>
-        <ul class="creds"><li class="rule" data-v="draw-x" aria-hidden="true"></li>
-          <li class="cred" data-v="rise"><span class="ct">Accreditation</span><span class="cv">IAPC&amp;M · Level 5 Elite</span></li>
-          <li class="cred" data-v="rise"><span class="ct">Based in</span><span class="cv">London, UK</span></li>
-          <li class="cred" data-v="rise"><span class="ct">Works</span><span class="cv">In person &amp; online</span></li></ul>
+<!-- 7 · about: photo settles, text rises, credentials slide -->
+<section class="section about" id="about" aria-labelledby="about-h">
+  <div class="container about-grid">
+    <div class="about-photo" data-v="settle"><img src="assets/img/alex-color.webp" width="785" height="730" loading="lazy" decoding="async" alt="Alex Moudiotis smiling, in colour"></div>
+    <div class="about-body">
+      <span class="eyebrow" data-v="rise">Meet Alex</span>
+      <h2 class="h2" id="about-h" data-v="rise">A coach shaped by teaching, the arts and starting over.</h2>
+      <p data-v="rise">I’m Alex Moudiotis, a London-based coach with a background in teaching and the arts. I studied Fine Arts at the Aristotle University of Thessaloniki and hold an Integrated Master in Visual and Applied Arts.</p>
+      <p data-v="rise">Starting over in a new country taught me what it takes to speak your own truth. That is the work I do with clients: often after a break-up, a career change or a life transition.</p>
+      <ul class="creds">
+        <li data-v="slide"><span class="ct">Accreditation</span><span class="cv">Elite Life Coach, Level 5 · IAPC&amp;M</span></li>
+        <li data-v="slide"><span class="ct">Trained at</span><span class="cv">Evolve Life Coaching College</span></li>
+        <li data-v="slide"><span class="ct">Sessions</span><span class="cv">London &amp; online</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · contact (dark): heading rises, panel settles, details slide -->
+<section class="section contact dark" id="contact" aria-labelledby="contact-h">
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <span class="eyebrow" data-v="rise">Get in touch</span>
+      <h2 class="h2" id="contact-h" data-v="rise">The next step is small. Let’s talk.</h2>
+      <p class="lead" data-v="rise">Tell me a little about where you are. Every message is read personally and answered by email.</p>
+      <p class="contact-mail" data-v="slide"><span class="ct">Email</span><a href="mailto:inwardlab@gmail.com">inwardlab@gmail.com</a></p>
+    </div>
+    <form id="clientContactForm" class="form-panel" novalidate data-v="settle">
+      <input type="hidden" name="_to" value="inwardlab@gmail.com">
+      <input type="hidden" name="_key" value="k_sC6YnmbF9xyTT6bGdRm55WKc">
+      <input type="text" name="_hp" value="" autocomplete="off" tabindex="-1" aria-hidden="true" style="display:none;position:absolute;left:-9999px;">
+      <div class="form-row">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
       </div>
-    </div>
+      <div class="form-row">
+        <div class="field"><label for="f-phone">Phone <span class="opt">(optional)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="serviceSelect">About</label>
+          <select id="serviceSelect" name="subject">
+            <option value="">Choose a topic</option>
+            <option>Discovery call</option>
+            <option>1:1 coaching</option>
+            <option>Workshops &amp; training</option>
+            <option>Relationships &amp; break-ups</option>
+            <option>Boundaries &amp; self-worth</option>
+            <option>Purpose &amp; career direction</option>
+            <option>Confidence &amp; emotional balance</option>
+            <option>Something else</option>
+          </select></div>
+      </div>
+      <div class="field"><label for="f-message">Message</label><textarea id="f-message" name="message" rows="5" placeholder="A few sentences is plenty."></textarea></div>
+      <div class="form-foot">
+        <button type="submit" class="btn btn-light btn-lg btn-submit">Send message</button>
+        <p class="privacy">Your details are used only to reply to you.</p>
+      </div>
+      <p id="formStatus" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
-<!-- 9 · booking request -->
-<section class="section booking band-sage" id="book" aria-labelledby="book-h">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow" data-v="rise">Book your free discovery call</span>
-      <h2 class="h2" id="book-h" data-v="rise">Thirty minutes. No pressure. Just a start.</h2>
-      <p class="lead" data-v="rise">Every enquiry is read personally by Alex. Tell me a little, say when suits you, and I’ll confirm a time by email within one working day.</p>
-    </div>
-    <div class="book-card" data-v="settle">
-      <ol class="book-steps" id="bookSteps" aria-hidden="true">
-        <li class="active"><span class="bar"></span><span class="lab">01 · Focus</span></li>
-        <li><span class="bar"></span><span class="lab">02 · Time</span></li>
-        <li><span class="bar"></span><span class="lab">03 · Details</span></li>
-        <li><span class="bar"></span><span class="lab">04 · Done</span></li>
-      </ol>
-      <form id="bookForm" novalidate data-email="hello@theinwardlab.com" data-endpoint="">
-        <div class="book-body">
-          <fieldset class="book-pane" data-step="0">
-            <legend class="book-q">What would you like to focus on?</legend>
-            <div class="opt-grid" id="focusGrid"></div>
-          </fieldset>
-          <fieldset class="book-pane" data-step="1" hidden>
-            <legend class="book-q">When suits you?</legend>
-            <p class="book-hint">Choose as many as you like. I’ll reply with a time that works.</p>
-            <span class="sub-label" id="dayLabel">Days</span>
-            <div class="chip-row" role="group" aria-labelledby="dayLabel" id="dayRow"></div>
-            <span class="sub-label" id="timeLabel">Time of day (UK time)</span>
-            <div class="chip-row" role="group" aria-labelledby="timeLabel" id="timeRow"></div>
-            <p class="label">Sessions are held over Zoom or in central London.</p>
-          </fieldset>
-          <fieldset class="book-pane" data-step="2" hidden>
-            <legend class="book-q">A little about you.</legend>
-            <div class="field-row">
-              <div class="field"><label for="f-first">First name *</label><input id="f-first" name="first" autocomplete="given-name" required><span class="err" id="e-first">Please add your first name.</span></div>
-              <div class="field"><label for="f-last">Last name</label><input id="f-last" name="last" autocomplete="family-name"></div>
-            </div>
-            <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required><span class="err" id="e-email">Please add a valid email address.</span></div>
-            <div class="field"><label for="f-note">Anything you’d like me to know? (optional)</label><textarea id="f-note" name="note" rows="3" placeholder="A sentence or two is plenty."></textarea></div>
-          </fieldset>
-          <div class="book-pane book-done" data-step="3" hidden aria-live="polite">
-            <div class="badge" aria-hidden="true"><svg><use href="#i-tick"/></svg></div>
-            <h3 class="h3" id="doneTitle">Thank you.</h3>
-            <p id="doneText"></p>
-            <a class="btn btn-primary" id="doneMail" href="#" hidden>Open the email again</a>
-            <button class="tlink" type="button" id="bookAgain">Start a new request</button>
-          </div>
-        </div>
-        <div class="book-foot" id="bookFoot">
-          <div class="summary" aria-live="polite">
-            <div><span class="sl">Focus</span><span class="sv" id="sumFocus">—</span></div>
-            <div><span class="sl">When</span><span class="sv" id="sumWhen">—</span></div>
-          </div>
-          <div class="book-actions">
-            <button class="tlink" type="button" id="bookBack" hidden>Back</button>
-            <button class="btn btn-primary" type="button" id="bookNext" disabled>Continue <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></button>
-          </div>
-        </div>
-        <p class="form-status" id="formStatus" role="status"></p>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- 10 · questions -->
+<!-- 9 · questions: heading rises, items slide, rule draws -->
 <section class="section" id="faq" aria-labelledby="faq-h">
-  <div class="container">
+  <div class="container faq-grid">
     <div class="section-head">
       <span class="eyebrow" data-v="rise">Before you reach out</span>
-      <h2 class="h2" id="faq-h" data-v="rise">The questions most people ask.</h2>
+      <h2 class="h2" id="faq-h" data-v="rise">Questions people ask.</h2>
+      <span class="rule" data-v="draw-x" aria-hidden="true"></span>
     </div>
     <ul class="faq-list">
-      <li class="faq-item" data-v="rise"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-1" id="fq-1">Is this therapy? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
-        <div class="faq-a" id="fa-1" role="region" aria-labelledby="fq-1"><div><p>No — and I’ll always be honest about the difference. Therapy often looks back to heal; coaching looks forward to move. If something needs therapeutic support, I’ll say so and help you find the right person.</p></div></div></li>
-      <li class="faq-item" data-v="rise"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-2" id="fq-2">How much does it cost? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
-        <div class="faq-a" id="fa-2" role="region" aria-labelledby="fq-2"><div><p>The first discovery call is free. Ongoing 1:1 sessions are £120 each, with discounted packages once we know we’re a fit. Workshops are quoted individually. No surprises, ever.</p></div></div></li>
-      <li class="faq-item" data-v="rise"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-3" id="fq-3">How many sessions will I need? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
-        <div class="faq-a" id="fa-3" role="region" aria-labelledby="fq-3"><div><p>Most people begin with a block of six fortnightly sessions — enough to create real momentum without an open-ended commitment. We review as we go, and you’re never locked in.</p></div></div></li>
-      <li class="faq-item" data-v="rise"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-4" id="fq-4">In person or online? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
-        <div class="faq-a" id="fa-4" role="region" aria-labelledby="fq-4"><div><p>Both. I see clients in central London and work with people worldwide over Zoom. Many do a mix. We’ll choose whatever helps you show up most honestly.</p></div></div></li>
-      <li class="faq-item" data-v="rise"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-5" id="fq-5">What if I’m not sure it’s for me? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
-        <div class="faq-a" id="fa-5" role="region" aria-labelledby="fq-5"><div><p>That’s exactly what the free call is for. There’s no pitch and no obligation — just an honest conversation about whether this is the right next step for you.</p></div></div></li>
+      <li class="faq-item" data-v="slide"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-1" id="fq-1">Is this therapy? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa-1" role="region" aria-labelledby="fq-1"><div><p>No. Therapy often looks back to heal; coaching looks forward to move. If something needs therapeutic support, I will say so and help you find the right person.</p></div></div></li>
+      <li class="faq-item" data-v="slide"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-2" id="fq-2">Do I need to know what I want to work on? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa-2" role="region" aria-labelledby="fq-2"><div><p>No. Most people arrive with a feeling, not a plan. The discovery call is where we put words to it.</p></div></div></li>
+      <li class="faq-item" data-v="slide"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-3" id="fq-3">In person or online? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa-3" role="region" aria-labelledby="fq-3"><div><p>Both. I work with clients in London and online. We choose whatever helps you show up most honestly.</p></div></div></li>
+      <li class="faq-item" data-v="slide"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-4" id="fq-4">What if I’m not sure it’s for me? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa-4" role="region" aria-labelledby="fq-4"><div><p>That is what the discovery call is for: an honest conversation about whether this is the right next step, with no obligation.</p></div></div></li>
     </ul>
   </div>
 </section>
 </main>
 
-<footer class="footer" id="contact">
-  <div class="container">
-    <div class="footer-top">
-      <div>
-        <span class="eyebrow" data-v="rise">The next step is small</span>
-        <h2 class="h2" data-v="rise">Let’s have one honest conversation.</h2>
-        <p class="footer-sub" data-v="rise">No commitment, no pressure — just thirty minutes to see what’s possible.</p>
-        <a class="btn btn-light btn-lg" href="#book" data-v="rise">Book your free call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
-      </div>
-      <div class="footer-links">
-        <nav class="footer-col" aria-label="Explore"><h2>Explore</h2>
-          <ul><li><a href="#approach">Approach</a></li><li><a href="#help">What I help with</a></li><li><a href="#method">The method</a></li><li><a href="#work">Work together</a></li></ul></nav>
-        <div class="footer-col"><h2>Connect</h2>
-          <ul><li><a href="#book">Book a call</a></li><li><a href="mailto:hello@theinwardlab.com">hello@theinwardlab.com</a></li></ul></div>
-      </div>
-    </div>
-    <div class="footer-bot">
-      <a class="logo" href="#top" aria-label="The Inward Lab — back to top"><span class="logo-mark">the&nbsp;<span class="logo-box">in</span>ward&nbsp;lab</span><span class="logo-tag">Integrative Life Coaching</span></a>
-      <span class="small">© 2026 The Inward Lab · Integrative life coaching · London</span>
-    </div>
+<footer class="footer dark">
+  <div class="container footer-inner">
+    <a class="logo" href="#top" aria-label="The Inward Lab — back to top"><span class="logo-mark">the&nbsp;<span class="logo-box">in</span>ward&nbsp;lab</span><span class="logo-tag">Integrative Life Coaching</span></a>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#help">What I help with</a><a href="#work">Work together</a><a href="#about">About</a><a href="#contact">Contact</a><a href="mailto:inwardlab@gmail.com">inwardlab@gmail.com</a>
+    </nav>
+    <span class="small">© 2026 The Inward Lab · London</span>
   </div>
 </footer>
 
 <script src="assets/js/elatirio.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/hero.js" defer></script>
-<script src="assets/js/booking.js" defer></script>
+<script src="assets/js/contact-form.js" defer></script>
 </body>
 </html>
