@@ -121,8 +121,8 @@ a { color: inherit; }
 /* ---------- nav ---------- */
 .progress { position: fixed; inset: 0 0 auto 0; height: 2px; background: var(--accent); z-index: 200; transform: scaleX(0); transform-origin: left; }
 .nav { position: fixed; inset: 0 0 auto 0; z-index: 100; padding: 16px 0; }
-.nav::before { content: ""; position: absolute; inset: 0; z-index: -1; background: color-mix(in srgb, var(--canvas) 88%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line-soft); opacity: 0; transition: opacity .4s var(--ease-ui); }
-.nav.scrolled::before { opacity: 1; }
+.nav::before { content: ""; position: absolute; inset: 0; z-index: -1; background: color-mix(in srgb, var(--canvas) 88%, transparent); box-shadow: 0 1px 0 var(--line-soft); opacity: 0; transition: opacity .4s var(--ease-ui); }
+.nav.scrolled::before { opacity: 1; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }   /* blur only once it is visible: no blur layer under the header's entry */
 .nav { color: var(--ink); transition: color .3s var(--ease-ui); }
 .nav:not(.scrolled) { color: var(--on-night); }
 .nav:not(.scrolled) .logo-tag { color: var(--on-night-soft); }
@@ -150,7 +150,7 @@ a { color: inherit; }
   .nav-cta-desktop { display: none; }
   .nav-links { position: fixed; top: 0; right: 0; bottom: 0; width: min(82vw, 340px); background: var(--paper); z-index: 150; flex-direction: column; align-items: flex-end; justify-content: flex-start; gap: 4px; padding: 76px 28px 28px; translate: 100% 0; visibility: hidden; transition: translate .35s var(--ease), visibility 0s .35s; box-shadow: -24px 0 60px -30px rgba(32,39,31,.4); }
   .nav-links.open { translate: 0 0; visibility: visible; transition: translate .35s var(--ease), visibility 0s; }
-  .nav-links a:not(.btn) { font-size: 20px; font-family: var(--serif); }
+  .nav-links a:not(.btn), .nav-links .nav-sub-t { font-size: 18px; font-family: var(--sans); font-weight: 500; }   /* one family in the panel */
   .nav-links .btn { margin-top: var(--s3); }
   .panel-close { display: inline-flex; position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; align-items: center; justify-content: center; font-size: 26px; line-height: 1; border-radius: 50%; }
   .scrim.on { opacity: 1; pointer-events: auto; }

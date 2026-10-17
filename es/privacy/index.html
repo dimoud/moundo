@@ -27,13 +27,13 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
 </script>
 <link rel="preload" href="../../assets/fonts/newsreader-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/hanken-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/css/base.css?v=202610171953">
-<link rel="stylesheet" href="../../assets/css/sections.css?v=202610171953">
-<link rel="stylesheet" href="../../assets/css/xoro.css?v=202610171953">
-<link rel="stylesheet" href="../../assets/css/xoro-site.css?v=202610171953">
-<link rel="stylesheet" href="../../assets/css/scroll.css?v=202610171953">
-<link rel="stylesheet" href="../../assets/css/pages.css?v=202610171953">
-<link rel="stylesheet" href="../../assets/css/expertease-credit.css?v=202610171953">
+<link rel="stylesheet" href="../../assets/css/base.css?v=202610172039">
+<link rel="stylesheet" href="../../assets/css/sections.css?v=202610172039">
+<link rel="stylesheet" href="../../assets/css/xoro.css?v=202610172039">
+<link rel="stylesheet" href="../../assets/css/xoro-site.css?v=202610172039">
+<link rel="stylesheet" href="../../assets/css/scroll.css?v=202610172039">
+<link rel="stylesheet" href="../../assets/css/pages.css?v=202610172039">
+<link rel="stylesheet" href="../../assets/css/expertease-credit.css?v=202610172039">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.theinwardlab.com/#website","url":"https://www.theinwardlab.com/","name":"The Inward Lab","inLanguage":["en","el","es"],"publisher":{"@id":"https://www.theinwardlab.com/#org"}},{"@type":"ProfessionalService","@id":"https://www.theinwardlab.com/#org","name":"The Inward Lab","url":"https://www.theinwardlab.com/es/","email":"inwardlab@gmail.com","description":"Life coaching integrativo en Londres y online con Alex Moudiotis: relaciones y rupturas, límites y autoestima, propósito y dirección profesional, confianza y equilibrio emocional.","image":"https://www.theinwardlab.com/assets/img/alex-hero.webp","logo":"https://www.theinwardlab.com/email-logo.png","founder":{"@id":"https://www.theinwardlab.com/#alex"},"areaServed":[{"@type":"City","name":"London","sameAs":"https://www.wikidata.org/wiki/Q84"},"Online"],"makesOffer":[{"@type":"Offer","itemOffered":{"@id":"https://www.theinwardlab.com/es/relationships-breakup-coaching/#service"}},{"@type":"Offer","itemOffered":{"@id":"https://www.theinwardlab.com/es/boundaries-self-worth-coaching/#service"}},{"@type":"Offer","itemOffered":{"@id":"https://www.theinwardlab.com/es/career-purpose-coaching/#service"}},{"@type":"Offer","itemOffered":{"@id":"https://www.theinwardlab.com/es/confidence-coaching/#service"}}]},{"@type":"Person","@id":"https://www.theinwardlab.com/#alex","name":"Alex Moudiotis","url":"https://www.theinwardlab.com/es/alex-moudiotis/","image":"https://www.theinwardlab.com/assets/img/alex-hero.webp","jobTitle":"Life coach","worksFor":{"@id":"https://www.theinwardlab.com/#org"},"workLocation":{"@type":"City","name":"London"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Aristotle University of Thessaloniki","url":"https://www.auth.gr/en/"},"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"Elite Life Coach, Level 5","credentialCategory":"Professional accreditation","recognizedBy":{"@type":"Organization","name":"IAPC&M","url":"https://coach-accreditation.services/"}}],"knowsAbout":["Relaciones y rupturas","Límites y autoestima","Propósito y dirección profesional","Confianza y equilibrio emocional","Life coaching"]},{"@type":"WebPage","@id":"https://www.theinwardlab.com/es/privacy/#webpage","url":"https://www.theinwardlab.com/es/privacy/","name":"Aviso de privacidad | The Inward Lab","inLanguage":"es","isPartOf":{"@id":"https://www.theinwardlab.com/#website"},"about":{"@id":"https://www.theinwardlab.com/#org"},"dateModified":"2026-10-17","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.theinwardlab.com/es/"},{"@type":"ListItem","position":2,"name":"Aviso de privacidad","item":"https://www.theinwardlab.com/es/privacy/"}]}}]}</script>
 </head>
 <body class="">
@@ -55,9 +55,10 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
     <div class="nav-right">
       <nav class="nav-links" id="navLinks" aria-label="Menú principal">
         <button class="panel-close nav-close" type="button" id="navClose" aria-label="Cerrar menú"><span aria-hidden="true">×</span></button>
+        <!-- one entry per destination page; no links to parts of the home page (17/10: no doubles) -->
         <div class="nav-sub">
-          <a class="nav-sub-t" href="../#services">Coaching <svg class="dn" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <ul class="sub">
+          <button class="nav-sub-t" type="button" aria-expanded="false" aria-controls="subCoaching">Coaching <svg class="dn" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="sub" id="subCoaching">
             <li><a href="../relationships-breakup-coaching/">Relaciones y rupturas</a></li>
             <li><a href="../boundaries-self-worth-coaching/">Límites y autoestima</a></li>
             <li><a href="../career-purpose-coaching/">Propósito y dirección profesional</a></li>
@@ -65,11 +66,8 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
             
           </ul>
         </div>
-        <a href="../#method">El método</a>
-        <div class="nav-sub">
-          <a class="nav-sub-t" href="../work-with-me/">Trabajar juntos <svg class="dn" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <ul class="sub"><li><a href="../workshops/">Talleres y formación</a></li></ul>
-        </div>
+        <a href="../work-with-me/">Trabajar juntos</a>
+        <a href="../workshops/">Talleres</a>
         <a href="../alex-moudiotis/">Sobre Alex</a>
         <a href="../faq/">Preguntas</a>
         <div class="lang" role="group" aria-label="Idioma">
@@ -143,8 +141,8 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
   </div>
 </footer>
 
-<script src="../../assets/js/elatirio.js?v=202610171953" defer></script>
-<script src="../../assets/js/main.js?v=202610171953" defer></script>
-<script src="../../assets/js/xoro.js?v=202610171953" defer></script>
+<script src="../../assets/js/elatirio.js?v=202610172039" defer></script>
+<script src="../../assets/js/main.js?v=202610172039" defer></script>
+<script src="../../assets/js/xoro.js?v=202610172039" defer></script>
 </body>
 </html>

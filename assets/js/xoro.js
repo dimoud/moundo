@@ -46,9 +46,11 @@
   function qualifies(r) {
     var vh = innerHeight, h = r.height;
     if (r.right < 0 || r.left > innerWidth) return false;
-    if (h < 2) return r.top > vh * 0.05 && r.top < vh * 0.92;
-    var vis = Math.min(r.bottom, vh * 0.92) - Math.max(r.top, vh * 0.05);
-    return vis >= Math.min(h * 0.35, vh * 0.28);
+    // v2.20 (mundo 17/10): starts as the element comes into view (bottom zone 98 %, ≥ 26 % of it or 21 % of the screen),
+    // so nothing "appears out of nowhere" on an already empty area; still inside the visibility rule (ΜΗ-47, KN11)
+    if (h < 2) return r.top > vh * 0.03 && r.top < vh * 0.98;
+    var vis = Math.min(r.bottom, vh * 0.98) - Math.max(r.top, vh * 0.03);
+    return vis >= Math.min(h * 0.26, vh * 0.21);
   }
   function restsInView(r, vh) {
     if (r.right < 0 || r.left > innerWidth) return false;

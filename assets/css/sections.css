@@ -37,10 +37,13 @@
 
 /* ---------- hero timeline: one act at a time (ms × --wx-k on mobile) ----------
    0 portrait panel opens from the right edge (frame) · 250 eyebrow arrives · 400+70i title words rise through mask
+   · 1150 sub · 1350 button · 1500 link · 1700 chip · 1900 pause control */
 .hero { --hk: var(--wx-k, 1); }
 .hero-in .hero-photo     { animation: h-open 1000ms var(--wx-out) both; }
-.hero-in .hero-photo img { animation: h-settle-img 1400ms var(--wx-out) both; }
-.hero-in .h-eye          { animation: h-from-left 600ms var(--wx-out) both; animation-delay: calc(250ms * var(--hk)); }
+.hero-in .hero-photo img { animation: h-window 1700ms cubic-bezier(.25,.74,.22,1) both; }   /* image moves against its panel: a window opening */
+.hero-in .h-eye          { animation: h-from-left 700ms var(--wx-out) both; animation-delay: calc(250ms * var(--hk)); }
+.hero-in .h-eye::before, .hero-in .h-eye::after { transform-origin: right center; animation: h-line 900ms var(--wx-out) both; animation-delay: calc(500ms * var(--hk)); }
+.anim-ready .hero:not(.hero-in) .h-eye::before { transform: scaleX(0); }
 .hero-in .word > span    { animation: h-mask 700ms var(--wx-out) both; animation-delay: calc((400ms + var(--i) * 70ms) * var(--hk)); }
 .hero-in .h-sub          { animation: h-rise 700ms var(--wx-out) both; animation-delay: calc(1150ms * var(--hk)); }
 .hero-in .h-btn          { animation: h-arrive 800ms cubic-bezier(.2,1.01,.3,1) both; animation-delay: calc(1350ms * var(--hk)); }
@@ -49,10 +52,19 @@
 .anim-ready .hero:not(.hero-in) .hero-photo { opacity: 0; }
 .anim-ready .hero:not(.hero-in) .word > span { translate: 0 105%; }
 @keyframes h-from-left { from { opacity: 0; translate: -28px 0; } }
-@keyframes h-mask      { from { translate: 0 105%; } }
+@keyframes h-mask      { from { translate: 0 105%; rotate: 3deg; } }
+.word > span { transform-origin: 0 100%; }
 @keyframes h-open      { from { opacity: 0; translate: 24% 0; } }
-@keyframes h-settle-img { from { scale: 1.08; } }
+@keyframes h-window { from { scale: 1.14; translate: -9% 0; } }
 @keyframes h-rise      { from { opacity: 0; translate: 0 18px; } }
+@keyframes h-line      { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes h-drop      { from { opacity: 0; transform: translate3d(0,-14px,0); } to { opacity: 1; transform: none; } }
+/* the header arrives first, one item after another (logo → links → button), then the hero */
+@media (min-width: 941px) {
+  .anim-ready .nav .logo, .anim-ready .nav-links, .anim-ready .nav-cta-desktop { animation: h-drop 700ms var(--wx-out) both; }
+  .anim-ready .nav-links { animation-delay: 120ms; }
+  .anim-ready .nav-cta-desktop { animation-delay: 260ms; }
+}
 @keyframes h-arrive    { from { opacity: 0; translate: 48px 0; } }
 @keyframes h-dock      { from { opacity: 0; translate: -50% 16px; } to { translate: -50% 0; } }
 @media (max-width: 734px) { .hero-in .h-chip { animation-name: h-dock-m; } }

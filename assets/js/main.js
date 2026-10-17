@@ -48,6 +48,14 @@
   doc.addEventListener('touchend', function (e) { if (menuOpen && Math.abs(e.changedTouches[0].clientX - tx) > 60) closeMenu(false); }, { passive: true });
   window.matchMedia('(min-width: 941px)').addEventListener('change', function (e) { if (e.matches) closeMenu(false); });
 
+  /* ---- submenu button (desktop): click/tap toggles, Esc and outside click close ---- */
+  [].forEach.call(doc.querySelectorAll('.nav-sub-t'), function (b) {
+    var box = b.parentNode;
+    b.addEventListener('click', function () { var o = !box.classList.contains('open'); box.classList.toggle('open', o); b.setAttribute('aria-expanded', o ? 'true' : 'false'); });
+    doc.addEventListener('click', function (e) { if (!box.contains(e.target)) { box.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); } });
+    doc.addEventListener('keydown', function (e) { if (e.key === 'Escape') { box.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); } });
+  });
+
   /* ---- links that open the form with a topic chosen ---- */
   var sel = doc.getElementById('serviceSelect');
   doc.addEventListener('click', function (e) {

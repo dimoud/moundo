@@ -23,13 +23,13 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
 </script>
 <link rel="preload" href="/assets/fonts/newsreader-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/hanken-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/base.css?v=202610171953">
-<link rel="stylesheet" href="/assets/css/sections.css?v=202610171953">
-<link rel="stylesheet" href="/assets/css/xoro.css?v=202610171953">
-<link rel="stylesheet" href="/assets/css/xoro-site.css?v=202610171953">
-<link rel="stylesheet" href="/assets/css/scroll.css?v=202610171953">
-<link rel="stylesheet" href="/assets/css/pages.css?v=202610171953">
-<link rel="stylesheet" href="/assets/css/expertease-credit.css?v=202610171953">
+<link rel="stylesheet" href="/assets/css/base.css?v=202610172039">
+<link rel="stylesheet" href="/assets/css/sections.css?v=202610172039">
+<link rel="stylesheet" href="/assets/css/xoro.css?v=202610172039">
+<link rel="stylesheet" href="/assets/css/xoro-site.css?v=202610172039">
+<link rel="stylesheet" href="/assets/css/scroll.css?v=202610172039">
+<link rel="stylesheet" href="/assets/css/pages.css?v=202610172039">
+<link rel="stylesheet" href="/assets/css/expertease-credit.css?v=202610172039">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Page not found"}</script>
 </head>
 <body class="">
@@ -51,9 +51,10 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
     <div class="nav-right">
       <nav class="nav-links" id="navLinks" aria-label="Main">
         <button class="panel-close nav-close" type="button" id="navClose" aria-label="Close menu"><span aria-hidden="true">×</span></button>
+        <!-- one entry per destination page; no links to parts of the home page (17/10: no doubles) -->
         <div class="nav-sub">
-          <a class="nav-sub-t" href="/#services">Coaching <svg class="dn" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <ul class="sub">
+          <button class="nav-sub-t" type="button" aria-expanded="false" aria-controls="subCoaching">Coaching <svg class="dn" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="sub" id="subCoaching">
             <li><a href="/relationships-breakup-coaching/">Relationships &amp; break-ups</a></li>
             <li><a href="/boundaries-self-worth-coaching/">Boundaries &amp; self-worth</a></li>
             <li><a href="/career-purpose-coaching/">Purpose &amp; career direction</a></li>
@@ -61,11 +62,8 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
             
           </ul>
         </div>
-        <a href="/#method">The method</a>
-        <div class="nav-sub">
-          <a class="nav-sub-t" href="/work-with-me/">Work with me <svg class="dn" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <ul class="sub"><li><a href="/workshops/">Workshops &amp; training</a></li></ul>
-        </div>
+        <a href="/work-with-me/">Work with me</a>
+        <a href="/workshops/">Workshops</a>
         <a href="/alex-moudiotis/">About</a>
         <a href="/faq/">FAQ</a>
         <div class="lang" role="group" aria-label="Language">
@@ -127,8 +125,8 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
   </div>
 </footer>
 
-<script src="/assets/js/elatirio.js?v=202610171953" defer></script>
-<script src="/assets/js/main.js?v=202610171953" defer></script>
-<script src="/assets/js/xoro.js?v=202610171953" defer></script>
+<script src="/assets/js/elatirio.js?v=202610172039" defer></script>
+<script src="/assets/js/main.js?v=202610172039" defer></script>
+<script src="/assets/js/xoro.js?v=202610172039" defer></script>
 </body>
 </html>
