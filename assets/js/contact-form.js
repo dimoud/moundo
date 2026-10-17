@@ -15,16 +15,20 @@
   var TIMEOUT_MS = 60000;   // το Apps Script στέλνει δύο email (γραφείο + αντίγραφο)· στην πρώτη κλήση μπορεί να θέλει 15–30″
 
   var MSG = {
-    el: { sending: 'Αποστολή…', success: 'Το μήνυμά σας στάλθηκε. Θα επικοινωνήσουμε σύντομα.',
-          error: 'Κάτι πήγε στραβά. Δοκιμάστε ξανά ή καλέστε μας.', network: 'Σφάλμα δικτύου. Ελέγξτε τη σύνδεσή σας.',
-          timeout: 'Η αποστολή άργησε πολύ. Δοκιμάστε ξανά ή καλέστε μας.', invalid: 'Συμπληρώστε τα σημειωμένα πεδία.',
+    el: { sending: 'Αποστολή…', success: 'Ευχαριστούμε. Το μήνυμά σας στάλθηκε και ένα αντίγραφο έρχεται στο email σας.',
+          error: 'Κάτι πήγε στραβά. Δοκιμάστε ξανά ή γράψτε στο inwardlab@gmail.com.', network: 'Σφάλμα δικτύου. Ελέγξτε τη σύνδεσή σας.',
+          timeout: 'Η αποστολή άργησε πολύ. Δοκιμάστε ξανά ή γράψτε στο inwardlab@gmail.com.', invalid: 'Συμπληρώστε τα σημειωμένα πεδία.',
           notConfigured: 'Η φόρμα δεν έχει ρυθμιστεί ακόμα.' },
     en: { sending: 'Sending…', success: 'Thank you. Your message was sent and a copy is on its way to your inbox.',
           error: 'Something went wrong. Please try again or email inwardlab@gmail.com.', network: 'Network error. Check your connection.',
           timeout: 'Sending took too long. Please try again or email inwardlab@gmail.com.', invalid: 'Please complete the highlighted fields.',
-          notConfigured: 'The form is not configured yet.' }
+          notConfigured: 'The form is not configured yet.' },
+    es: { sending: 'Enviando…', success: 'Gracias. Tu mensaje se ha enviado y recibirás una copia en tu correo.',
+          error: 'Algo ha fallado. Inténtalo de nuevo o escribe a inwardlab@gmail.com.', network: 'Error de red. Comprueba tu conexión.',
+          timeout: 'El envío ha tardado demasiado. Inténtalo de nuevo o escribe a inwardlab@gmail.com.', invalid: 'Completa los campos marcados.',
+          notConfigured: 'El formulario aún no está configurado.' }
   };
-  function T(k) { var l = (document.documentElement.lang || 'el').slice(0, 2); return (MSG[l] || MSG.el)[k]; }
+  function T(k) { var l = (document.documentElement.lang || 'en').slice(0, 2); return (MSG[l] || MSG.en)[k]; }
 
   function setStatus(el, msg, type) {
     if (!el) return;
@@ -58,7 +62,7 @@
       function done() { if (timer) clearTimeout(timer); if (btn) { btn.textContent = label; btn.disabled = false; } }
 
       var fd = new FormData(form);
-      fd.append('_lang', (document.documentElement.lang || 'el').slice(0, 2));   // γλώσσα του αντιγράφου προς τον πελάτη
+      fd.append('_lang', (document.documentElement.lang || 'en').slice(0, 2) === 'el' ? 'el' : 'en');   // the Apps Script writes the visitor's copy in el or en; es visitors get en   // γλώσσα του αντιγράφου προς τον πελάτη
       var sel = form.querySelector('select[name="subject"]');   // το κείμενο της επιλογής, όχι ο κωδικός (value="4")
       if (sel && sel.selectedIndex > 0) fd.set('subject', sel.options[sel.selectedIndex].text.trim());
       fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: fd, signal: ctrl ? ctrl.signal : undefined })

@@ -23,17 +23,18 @@
   /* ---- mobile menu: right-hand panel, X, scrim, Esc, swipe, scroll ---- */
   var panel = doc.getElementById('navLinks'), burger = doc.getElementById('burger'),
       scrim = doc.getElementById('scrim'), closeBtn = doc.getElementById('navClose'), menuOpen = false;
+  var openLabel = burger.getAttribute('aria-label');
   function openMenu() {
     menuOpen = true; lastY = window.pageYOffset;
     panel.classList.add('open'); scrim.classList.add('on');
-    burger.setAttribute('aria-expanded', 'true'); burger.setAttribute('aria-label', 'Close menu');
+    burger.setAttribute('aria-expanded', 'true'); burger.setAttribute('aria-label', burger.getAttribute('data-close') || 'Close menu');
     setTimeout(function () { closeBtn.focus({ preventScroll: true }); }, 50);
   }
   function closeMenu(refocus) {
     if (!menuOpen) return;
     menuOpen = false;
     panel.classList.remove('open'); scrim.classList.remove('on');
-    burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', 'Open menu');
+    burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', openLabel);
     if (refocus) burger.focus({ preventScroll: true });
   }
   burger.addEventListener('click', function () { menuOpen ? closeMenu(true) : openMenu(); });
@@ -55,6 +56,19 @@
     [].forEach.call(sel.options, function (o, i) { if (o.text.toLowerCase() === want) sel.selectedIndex = i; });
   });
 
+  /* ---- contact page: ?topic=N pre-selects the form topic (links from service pages) ---- */
+  if (sel) {
+    var m = /[?&]topic=(\d+)/.exec(location.search);
+    if (m && sel.options[+m[1]]) sel.selectedIndex = +m[1];
+  }
+
+  /* ---- Expertease credit: its short loop runs only once the footer is on screen (KN6) ---- */
+  var ec = doc.getElementById('ecCredit');
+  if (ec && 'IntersectionObserver' in window) {
+    var eo = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { ec.classList.add('ec-on'); eo.disconnect(); } }); }, { threshold: .5 });
+    eo.observe(ec);
+  } else if (ec) ec.classList.add('ec-on');
+
   /* ---- FAQ ---- */
   var faq = [].slice.call(doc.querySelectorAll('.faq-item'));
   faq.forEach(function (it, i) {
@@ -66,7 +80,7 @@
   });
 
   /* ---- section highlight in the nav ---- */
-  var links = [].slice.call(doc.querySelectorAll('#navLinks a[href^="#"]:not(.btn)'));
+  var links = [].slice.call(doc.querySelectorAll('#navLinks a[href^="#"]:not(.btn):not(.lang-btn)'));
   if ('IntersectionObserver' in window && links.length) {
     var map = {};
     links.forEach(function (a) { var s = doc.querySelector(a.getAttribute('href')); if (s) map[s.id] = a; });

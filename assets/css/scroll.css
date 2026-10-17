@@ -1,0 +1,36 @@
+/* =========================================================
+   The Inward Lab: scroll-linked motion (kinisi, Flow C §B) — ONLY where progress is the mechanism.
+   #method: a thread runs through the four steps as the visitor scrolls; each step comes into full light
+   as the thread reaches it, and returns when scrolling back. Desktop + support only; elsewhere the
+   final frame (all four steps lit, thread complete) and the one-time choreography of xoro.css apply.
+   Support (MDN 16/09/2026): not Baseline — Chrome/Edge 115+, Safari 26; Firefox behind a flag.
+   ========================================================= */
+.method-track { position: relative; height: 2px; margin-top: var(--s6); background: rgba(239,235,224,.14); overflow: hidden; }
+.method-fill { position: absolute; inset: 0; background: var(--glow); transform-origin: left center; }
+.method .steps { margin-top: var(--s4); }
+.method .step .rule { display: none; }   /* the shared thread replaces the four separate rules */
+
+@media (min-width: 941px) and (hover: hover) {
+  @supports (animation-timeline: view()) {
+    .method        { timeline-scope: --method; }   /* the track sits before the steps: share the timeline */
+    .method .steps { view-timeline: --method block; }
+    .method-fill {
+      animation: xr-fill linear both;
+      animation-timeline: --method;
+      animation-range: cover 20% cover 50%;
+    }
+    .method .step {
+      animation: xr-step linear both;
+      animation-timeline: --method;
+      animation-range: cover calc(18% + var(--j) * 7.5%) cover calc(26% + var(--j) * 7.5%);
+    }
+    /* the scroll drives the steps here, so their one-time entries step aside (one element, one motion) */
+    html.wdx-js .method .step [data-v] { visibility: visible !important; animation: none !important; }
+  }
+}
+@keyframes xr-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes xr-step { from { opacity: .22; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .method-fill, .method .step { animation: none !important; }
+}

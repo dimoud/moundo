@@ -53,3 +53,15 @@
 #faq .section-head .rule[data-v]{ --d: .35s; --t: .8s; }
 #faq .list-rule                 { --d: .3s;  --t: .9s; }
 #faq .faq-item[data-v]          { --d: calc(.4s + var(--j) * .1s); --t: .7s; --c0: inset(0 100% 0 0); }
+
+/* inner pages (service, workshops): same engine, own timings */
+.sp-signals .sig-list li[data-v]      { --d: calc(.35s + var(--j) * .1s); --t: .7s; --c0: inset(0 100% 0 0 round 16px); --r: 16px; }
+.sp-signals .sig-list li p[data-v]    { --d: calc(.6s + var(--j) * .1s); --t: .5s; --dy: 10px; }
+.sp-changes .chg-list li[data-v]      { --d: calc(.3s + var(--j) * .12s); --t: .7s; --c0: inset(0 100% 0 0); }
+.sp-changes .chg-list .tick[data-v]   { --d: calc(.55s + var(--j) * .12s); --t: .9s; }
+.method .step p[data-v="build"]       { --c0: inset(0 100% 0 0); }
+.cta-band .rel-list li[data-v]        { --d: calc(.25s + var(--j) * .08s); --t: .7s; }
+.cta-band .band [data-v="mask-up"]    { --d: .2s; --t: .9s; }
+.cta-band .band .lead[data-v]         { --d: .45s; }
+.cta-band .band .btn[data-v]          { --d: .65s; --e: cubic-bezier(.2, 1.01, .3, 1); --dy: 22px; }
+.author[data-v]                       { --t: .8s; }
