@@ -1,0 +1,62 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   xoro.css — μηχανή χορογραφίας (βιβλιοθήκη #32) · δεξιότητα kinisi, Ροή Β · από expertease.eu/webdesign (wd-xoro) και moudiotis.gr (16/10/2026)
+   Γλώσσα κίνησης (ρήματα data-v): mask-up · rise · slide · grow · build · tilt · pop · dock · draw.
+   Κάθε στοιχείο ένα ρήμα από τη φύση του. Το τελικό καρέ είναι η στατική σύνθεση· ό,τι εμφανίζεται, μένει.
+   Χρόνοι: --d καθυστέρηση, --t διάρκεια, --e καμπύλη, κλίμακα --wx-k (κινητό 0,78).
+   Χωρίς JS / μειωμένη κίνηση: τελικό καρέ. Οι χρόνοι ανά ενότητα (--d/--t ανά επιλογέα) γράφονται στο CSS του ιστότοπου,
+   μετά από αυτό το αρχείο — παράδειγμα: paradeigma-moudiotis.css.
+═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --wx-out: cubic-bezier(.16, 1, .3, 1);
+  --wx-io:  cubic-bezier(.65, 0, .35, 1);
+  /* ελατήριο ζ 0,5 · tₛ 0,9 s · υπερακόντιση 16 % — μόνο για ό,τι έχει «μάζα» (κουμπιά, σφραγίδες, εικονίδια-δίσκοι) */
+  --wx-spring: linear(0, 0.028, 0.1021, 0.2082, 0.3337, 0.4676, 0.6007, 0.7262, 0.839, 0.9357, 1.0148, 1.0757, 1.1192, 1.1468, 1.1605, 1.1626, 1.1554, 1.1415, 1.123, 1.102, 1.08, 1.0586, 1.0387, 1.0211, 1.0062, 0.9942, 0.9852, 0.9789, 0.9751, 0.9735, 0.9737, 0.9753, 0.9778, 0.981, 0.9845, 0.988, 1);
+  --wx-k: 1;
+}
+@media (max-width: 768px), (hover: none) { :root { --wx-k: .78; } }
+
+/* ── κρατημένη αρχική κατάσταση: μόνο όταν το σενάριο έχει υποσχεθεί να τη λύσει (ΜΗ-01, 3,5 s) ── */
+html.wdx-js:not(.wdx-fail) .wdx:not(.wdx-go) [data-v] { visibility: hidden; }
+/* ορατότητα (ΜΗ-47): το στοιχείο μένει στο πρώτο καρέ ώσπου να φανεί· κρυμμένη καρτέλα ή σκηνή εκτός οθόνης = παύση */
+html.wdx-gate .wdx-go [data-v]:not(.wdx-seen),
+html.wdx-gate .wdx-go [data-v]:not(.wdx-seen)::before { animation-play-state: paused; }
+html.wdx-bg *, .wdx-off, .wdx-off *, .wdx-off *::before { animation-play-state: paused !important; }
+
+/* μάσκα κειμένου: ο τίτλος ανεβαίνει μέσα από δικό του πλαίσιο (η μάσκα ΕΞΩ από το στοιχείο που γράφει το i18n) */
+.wdm { display: block; overflow: clip; padding: .14em 0 .2em; margin: -.14em 0 -.2em; }
+
+/* μέσα στις σκηνές η γενική «εμφάνιση» του eng-animations δεν ισχύει: μία χορογραφία ανά στοιχείο */
+.wdx [data-v][data-reveal], .wdx [data-v] [data-reveal] { opacity: 1 !important; animation: none !important; }
+.wdx .eyebrow::before { transform: scaleX(1); transition: none; }
+
+/* ── τα ρήματα ── */
+.wdx-go [data-v] {
+  animation-duration: calc(var(--t, .7s) * var(--wx-k));
+  animation-delay: calc(var(--d, 0s) * var(--wx-k));
+  animation-timing-function: var(--e, var(--wx-out));
+  animation-fill-mode: backwards;
+}
+.wdx-go [data-v="mask-up"] { animation-name: wxMask; }
+.wdx-go [data-v="rise"]    { animation-name: wxRise; }
+.wdx-go [data-v="slide"]   { animation-name: wxSlide; }
+.wdx-go [data-v="grow"]    { animation-name: wxGrow; transform-origin: var(--o, left center); }
+.wdx-go [data-v="build"]   { animation-name: wxBuild; }
+.wdx-go [data-v="tilt"]    { animation-name: wxTilt; transform-origin: 50% 100%; }
+.wdx-go [data-v="pop"]     { animation-name: wxPop; --e: var(--wx-spring); transform-origin: var(--o, 50% 50%); }
+.wdx-go [data-v="dock"]    { animation-name: wxDock; }
+.wdx-go [data-v="draw"]    { animation-name: wxDraw; stroke-dasharray: 1; }
+/* η χρυσή γραμμή της ετικέτας «σχεδιάζεται» λίγο μετά την ετικέτα */
+.wdx-go .eyebrow[data-v]::before { animation: wxGrowT .7s var(--wx-out) calc((var(--d, 0s) + .3s) * var(--wx-k)) backwards; }
+
+@keyframes wxMask  { from { translate: 0 125%; } }
+@keyframes wxRise  { from { opacity: 0; translate: 0 var(--dy, 16px); } }
+@keyframes wxSlide { from { opacity: 0; translate: var(--dx, -18px) 0; } }
+@keyframes wxGrow  { from { scale: 0 1; } }
+@keyframes wxGrowT { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes wxBuild { from { clip-path: var(--c0, inset(0 100% 0 0 round var(--r, 0px))); }
+                     to   { clip-path: inset(0 0 0 0 round var(--r, 0px)); } }
+@keyframes wxTilt  { from { opacity: 0; transform: perspective(900px) rotateX(40deg) translateY(36px) scale(.92); } }
+@keyframes wxPop   { from { opacity: 0; scale: .3; rotate: -16deg; } 18% { opacity: 1; } }
+@keyframes wxDock  { from { opacity: 0; translate: var(--dx, 14%) 0; rotate: var(--rot, 6deg); } }
+@keyframes wxDraw  { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+

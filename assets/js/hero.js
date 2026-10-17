@@ -6,17 +6,17 @@
   'use strict';
   var hero = document.getElementById('top'), w = document.getElementById('moveWord');
   if (!hero || !w) return;
-  var ZETA = .5, TS = .7, DELAY = 380, LIMIT = 72;
+  var ZETA = .5, TS = .7, DELAY = 680, LIMIT = 72;
   var entered = false;
 
   function entry() {
     hero.classList.add('hero-in');
     if (!w.animate || window.Elatirio.reduced()) { entered = true; return; }
-    var x0 = -Math.min(80, hero.clientWidth * .12), wn = Elatirio.wn(ZETA, TS), T = TS * 1.1, frames = [];
+    var k = matchMedia('(max-width: 768px), (hover: none)').matches ? .78 : 1, x0 = -Math.min(80, hero.clientWidth * .12), wn = Elatirio.wn(ZETA, TS), T = TS * 1.1, frames = [];
     for (var t = 0; t < T; t += .02) frames.push({ transform: 'translateX(' + Elatirio.analytic(ZETA, wn, x0, 0, t).toFixed(2) + 'px)', offset: t / T });
     frames.push({ transform: 'translateX(0px)', offset: 1 });
-    w.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 180, delay: DELAY, fill: 'both', easing: 'ease-out' });
-    var a = w.animate(frames, { duration: T * 1000, delay: DELAY, fill: 'both', easing: 'linear' });
+    w.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 180, delay: DELAY * k, fill: 'both', easing: 'ease-out' });
+    var a = w.animate(frames, { duration: T * 1000, delay: DELAY * k, fill: 'both', easing: 'linear' });
     a.onfinish = function () { a.cancel(); entered = true; };
     a.oncancel = function () { entered = true; };
   }

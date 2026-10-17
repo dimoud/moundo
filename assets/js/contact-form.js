@@ -11,7 +11,7 @@
  *     γλώσσα της στιγμής (όχι της φόρτωσης), συμβάν GA4 generate_lead.
  * ────────────────────────────────────────────────────────────────────────── */
 (function () {
-  var GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+  var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzeuZEO1dd_Lbgi49wTM8xCKan1Fpy7blBko6NYmJ78i6OVG8lBAaIJ4Gjs_sjbjsmb/exec';
   var TIMEOUT_MS = 60000;   // το Apps Script στέλνει δύο email (γραφείο + αντίγραφο)· στην πρώτη κλήση μπορεί να θέλει 15–30″
 
   var MSG = {

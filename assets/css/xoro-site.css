@@ -1,0 +1,55 @@
+/* =========================================================
+   The Inward Lab: section choreography (times only; engine = xoro.css/xoro.js, library #32).
+   --d delay, --t duration, --j index inside a [data-xo-group]. Mobile scales by --wx-k (.78).
+   One protagonist per section (the heading through its mask), supporters 60–220 ms later.
+   ========================================================= */
+
+/* shared: label arrives first, heading rises through its mask */
+.wdx .eyebrow[data-v]           { --d: 0s;   --t: .6s; }
+.wdx .section-head [data-v="mask-up"], .statement [data-v="mask-up"] { --d: .1s; --t: .9s; }
+
+/* statement: the sentence, then the line under it is drawn, then the answer */
+.statement .rule[data-v]        { --d: .55s; --t: 1s; --o: center; }
+.statement .lead[data-v]        { --d: .75s; }
+.statement .tlink[data-v]       { --d: .9s; }
+
+/* areas: the rule, then each row is built from the left in order, its line follows */
+#help .list-rule                { --d: .35s; --t: .9s; }
+#help .area[data-v]             { --d: calc(.45s + var(--j) * .12s); --t: .8s; --c0: inset(0 100% 0 0); }
+#help .area .d[data-v]          { --d: calc(.7s + var(--j) * .12s); --t: .6s; }
+
+/* method: the four steps happen in order, left to right — the order IS the method */
+#method .step .rule[data-v]     { --d: calc(.4s + var(--j) * .22s); --t: .7s; }
+#method .step .sn[data-v]       { --d: calc(.5s + var(--j) * .22s); --t: .5s; }
+#method .step [data-v="mask-up"]{ --d: calc(.55s + var(--j) * .22s); --t: .8s; }
+#method .step p[data-v]         { --d: calc(.72s + var(--j) * .22s); --t: .6s; }
+
+/* ways: each panel grows up from its base, then its label, then its action */
+#work .way[data-v]              { --d: calc(.35s + var(--j) * .12s); --t: .8s; --c0: inset(100% 0 0 0 round 20px); --r: 20px; }
+#work .way .kind[data-v]        { --d: calc(.6s + var(--j) * .12s); --t: .5s; }
+#work .way .tlink[data-v]       { --d: calc(.8s + var(--j) * .12s); --t: .6s; }
+
+/* voice: the mark settles, the sentence rises, the name follows */
+.voice .qmark[data-v]           { --d: 0s;   --t: .7s; }
+.voice [data-v="mask-up"]       { --d: .15s; --t: 1s; }
+.voice figcaption[data-v]       { --d: .65s; }
+
+/* about: the arch opens upward, then the words */
+#about .about-photo[data-v]     { --d: 0s;   --t: 1s; }
+#about .eyebrow[data-v]         { --d: .2s; }
+#about [data-v="mask-up"]       { --d: .3s;  --t: .9s; }
+#about .about-body p[data-v]    { --d: .55s; }
+#about .about-body p[data-v] + p[data-v] { --d: .7s; }
+#about .creds li[data-v]        { --d: calc(.85s + var(--j) * .1s); }
+
+/* contact: invitation first, then the fields are built in reading order, then the button arrives */
+#contact .lead[data-v]          { --d: .35s; }
+#contact .contact-mail[data-v]  { --d: .5s; }
+#contact .field[data-v]         { --d: calc(.3s + var(--j) * .09s); --t: .7s; }
+#contact .btn-submit[data-v]    { --d: .85s; --e: cubic-bezier(.2, 1.01, .3, 1); --dy: 22px; }
+#contact .privacy[data-v]       { --d: 1s; }
+
+/* faq */
+#faq .section-head .rule[data-v]{ --d: .35s; --t: .8s; }
+#faq .list-rule                 { --d: .3s;  --t: .9s; }
+#faq .faq-item[data-v]          { --d: calc(.4s + var(--j) * .1s); --t: .7s; --c0: inset(0 100% 0 0); }

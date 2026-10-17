@@ -9,13 +9,16 @@
 <script>
 /* hidden motion states exist only while this class is present; removed after 2.5 s if the script never reports ready */
 document.documentElement.classList.add('anim-ready');
+document.documentElement.classList.add('wdx-js');setTimeout(function(){var r=document.documentElement;if(!r.classList.contains('wdx-ok'))r.classList.add('wdx-fail')},3500);
 setTimeout(function () { if (!window.__inwardReady) document.documentElement.classList.remove('anim-ready'); }, 2500);
 </script>
 <link rel="preload" href="assets/fonts/newsreader-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/hanken-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/img/alex-bw.webp" as="image" type="image/webp" fetchpriority="high">
+<link rel="preload" href="assets/img/alex-hero.avif" as="image" type="image/avif" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/sections.css">
+<link rel="stylesheet" href="assets/css/xoro.css">
+<link rel="stylesheet" href="assets/css/xoro-site.css">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -49,113 +52,110 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
 
 <main id="main">
 
-<!-- 1 · first screen (dark): words rise, "Movement" springs, rings converge, portrait settles -->
+<!-- 1 · first screen (dark), one act at a time -->
 <section class="hero dark" id="top" aria-labelledby="heroTitle">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow" data-v="rise" style="--d:0ms">Integrative life coaching · London &amp; online</span>
+      <span class="eyebrow h-eye">Integrative life coaching<span class="e2">&nbsp;· London &amp; online</span></span>
       <h1 class="display" id="heroTitle">
         <span class="word" style="--i:0"><span>Clarity&nbsp;</span></span><span class="word" style="--i:1"><span>isn’t&nbsp;</span></span><span class="word" style="--i:2"><span>the&nbsp;</span></span><span class="word" style="--i:3"><span>goal.</span></span><br>
         <span class="move" id="moveWord" title="Drag me">Movement&nbsp;</span><span class="word" style="--i:5"><span>is.</span></span>
       </h1>
-      <p class="hero-sub lead" data-v="rise" style="--d:560ms">I help people move beyond repeating patterns and step forward with clarity and confidence.</p>
-      <div class="hero-cta" data-v="rise" style="--d:660ms">
-        <a class="btn btn-light btn-lg" href="#contact" data-subject="Discovery call">Book a discovery call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
-        <a class="tlink" href="#method">How the work works <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
+      <p class="hero-sub lead h-sub">I help people move beyond repeating patterns and step forward with clarity and confidence.</p>
+      <div class="hero-cta hero-ctas">
+        <a class="btn btn-light btn-lg h-btn" data-cta href="#contact" data-subject="Discovery call">Book a discovery call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
+        <a class="tlink h-link" href="#method">How the work works <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
       </div>
     </div>
     <div class="hero-media">
-      <svg class="rings" id="rings" viewBox="-300 -300 600 600" aria-hidden="true" focusable="false">
-        <circle r="292" style="--k:0"/><circle r="252" style="--k:1"/><circle r="212" style="--k:2"/><circle r="172" style="--k:3"/>
-      </svg>
-      <div class="hero-photo"><img src="assets/img/alex-bw.webp" width="402" height="432" alt="Alex Moudiotis, founder of The Inward Lab" fetchpriority="high"></div>
-      <p class="photo-chip" data-v="stamp" style="--d:1000ms"><span class="lbl">Accredited</span> Elite Life Coach · IAPC&amp;M Level&nbsp;5</p>
+      <div class="hero-photo"><picture><source srcset="assets/img/alex-hero.avif" type="image/avif"><img src="assets/img/alex-hero.webp" width="762" height="733" alt="Alex Moudiotis, founder of The Inward Lab, smiling" fetchpriority="high"></picture></div>
+      <p class="photo-chip h-chip"><span class="lbl">Accredited</span> Elite Life Coach · IAPC&amp;M Level&nbsp;5</p>
     </div>
   </div>
 </section>
 
-<!-- 2 · statement: words kindle, foot rises, rule draws -->
-<section class="section statement" id="approach" aria-labelledby="appr-h">
+<!-- 2 · statement -->
+<section class="section statement wdx is-centred-sec" id="approach" aria-labelledby="appr-h">
   <div class="container">
     <span class="eyebrow" data-v="slide">Why people come</span>
-    <h2 class="big" id="appr-h" data-kindle>A break-up, a career that no longer fits, a life that changed shape. You understand the pattern. <em>You want to move.</em></h2>
-    <span class="rule" data-v="draw-x" aria-hidden="true"></span>
+    <span class="wdm"><h2 class="big" id="appr-h" data-v="mask-up">A break-up, a career that no longer fits, a life that changed shape. You understand the pattern. <em>You want to move.</em></h2></span>
+    <span class="rule" data-v="grow" aria-hidden="true"></span>
     <div class="statement-foot">
       <p class="lead" data-v="rise">The approach is intuitive and reflective, but also structured: every insight is tied to an action you take into real life.</p>
-      <a class="tlink" href="#method" data-v="rise">Inside the method <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
+      <a class="tlink" href="#method" data-v="slide" style="--dx:18px">Inside the method <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a>
     </div>
   </div>
 </section>
 
-<!-- 3 · areas: heading rises, rows slide, numbers stamp -->
-<section class="section areas" id="help" aria-labelledby="help-h">
+<!-- 3 · areas -->
+<section class="section areas wdx" id="help" aria-labelledby="help-h">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow" data-v="rise">What I help with</span>
-      <h2 class="h2" id="help-h" data-v="rise">Four places where change usually starts.</h2>
+    <div class="section-head is-centred">
+      <span class="eyebrow" data-v="slide">What I help with</span>
+      <span class="wdm"><h2 class="h2" id="help-h" data-v="mask-up">Four places where change usually starts.</h2></span>
     </div>
-    <ul class="area-list">
-      <li><a class="area" href="#contact" data-subject="Relationships &amp; break-ups" data-v="slide"><span class="n" data-v="stamp">01</span><span class="t">Relationships &amp; break-ups</span><span class="d">Move from pain and confusion to clarity and strength.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
-      <li><a class="area" href="#contact" data-subject="Boundaries &amp; self-worth" data-v="slide"><span class="n" data-v="stamp">02</span><span class="t">Boundaries &amp; self-worth</span><span class="d">Know your worth, honour your limits.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
-      <li><a class="area" href="#contact" data-subject="Purpose &amp; career direction" data-v="slide"><span class="n" data-v="stamp">03</span><span class="t">Purpose &amp; career direction</span><span class="d">Discover purpose, shape your future.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
-      <li><a class="area" href="#contact" data-subject="Confidence &amp; emotional balance" data-v="slide"><span class="n" data-v="stamp">04</span><span class="t">Confidence &amp; emotional balance</span><span class="d">Find your centre, trust your voice, and move through life with calm confidence.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
+    <span class="rule list-rule" data-v="grow" aria-hidden="true"></span>
+    <ul class="area-list" data-xo-group>
+      <li><a data-v="build" class="area" href="#contact" data-subject="Relationships &amp; break-ups"><span class="n">01</span><span class="t">Relationships &amp; break-ups</span><span class="d" data-v="rise">Move from pain and confusion to clarity and strength.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
+      <li><a data-v="build" class="area" href="#contact" data-subject="Boundaries &amp; self-worth"><span class="n">02</span><span class="t">Boundaries &amp; self-worth</span><span class="d" data-v="rise">Know your worth, honour your limits.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
+      <li><a data-v="build" class="area" href="#contact" data-subject="Purpose &amp; career direction"><span class="n">03</span><span class="t">Purpose &amp; career direction</span><span class="d" data-v="rise">Discover purpose, shape your future.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
+      <li><a data-v="build" class="area" href="#contact" data-subject="Confidence &amp; emotional balance"><span class="n">04</span><span class="t">Confidence &amp; emotional balance</span><span class="d" data-v="rise">Find your centre, trust your voice, and move through life with calm confidence.</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></li>
     </ul>
   </div>
 </section>
 
-<!-- 4 · method (dark): line draws, numbers stamp, titles slide, text rises -->
-<section class="section method dark" id="method" aria-labelledby="method-h">
+<!-- 4 · method (dark) -->
+<section class="section method dark wdx" id="method" aria-labelledby="method-h">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow" data-v="rise">The Inward Lab method</span>
-      <h2 class="h2" id="method-h" data-v="rise">Insight is the start. The work is what you do with it.</h2>
+    <div class="section-head is-centred">
+      <span class="eyebrow" data-v="slide">The Inward Lab method</span>
+      <span class="wdm"><h2 class="h2" id="method-h" data-v="mask-up">Insight is the start. The work is what you do with it.</h2></span>
     </div>
-    <ol class="steps">
-      <li class="step"><span class="rule" data-v="draw-x" aria-hidden="true"></span><span class="sn" data-v="stamp">01</span><h3 class="h3" data-v="slide">Land</h3><p data-v="rise">A first conversation. We name what is really going on and whether this work fits you.</p></li>
-      <li class="step"><span class="rule" data-v="draw-x" aria-hidden="true"></span><span class="sn" data-v="stamp">02</span><h3 class="h3" data-v="slide">Map</h3><p data-v="rise">We map the pattern under the problem: where it began, what it protects, what it costs you now.</p></li>
-      <li class="step"><span class="rule" data-v="draw-x" aria-hidden="true"></span><span class="sn" data-v="stamp">03</span><h3 class="h3" data-v="slide">Move</h3><p data-v="rise">Small, deliberate experiments between sessions. Insight becomes a different way of living.</p></li>
-      <li class="step"><span class="rule" data-v="draw-x" aria-hidden="true"></span><span class="sn" data-v="stamp">04</span><h3 class="h3" data-v="slide">Hold</h3><p data-v="rise">We build the structure and self-trust that keep the change in place after our sessions end.</p></li>
+    <ol class="steps" data-xo-group>
+      <li class="step"><span class="rule" data-v="grow" aria-hidden="true"></span><span class="sn" data-v="slide">01</span><span class="wdm"><h3 class="h3" data-v="mask-up">Land</h3></span><p data-v="rise">A first conversation. We name what is really going on and whether this work fits you.</p></li>
+      <li class="step"><span class="rule" data-v="grow" aria-hidden="true"></span><span class="sn" data-v="slide">02</span><span class="wdm"><h3 class="h3" data-v="mask-up">Map</h3></span><p data-v="rise">We map the pattern under the problem: where it began, what it protects, what it costs you now.</p></li>
+      <li class="step"><span class="rule" data-v="grow" aria-hidden="true"></span><span class="sn" data-v="slide">03</span><span class="wdm"><h3 class="h3" data-v="mask-up">Move</h3></span><p data-v="rise">Small, deliberate experiments between sessions. Insight becomes a different way of living.</p></li>
+      <li class="step"><span class="rule" data-v="grow" aria-hidden="true"></span><span class="sn" data-v="slide">04</span><span class="wdm"><h3 class="h3" data-v="mask-up">Hold</h3></span><p data-v="rise">We build the structure and self-trust that keep the change in place after our sessions end.</p></li>
     </ol>
   </div>
 </section>
 
-<!-- 5 · ways: heading rises, panels settle, links slide -->
-<section class="section" id="work" aria-labelledby="work-h">
+<!-- 5 · ways -->
+<section class="section wdx" id="work" aria-labelledby="work-h">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow" data-v="rise">Ways to work together</span>
-      <h2 class="h2" id="work-h" data-v="rise">Three ways in.</h2>
+    <div class="section-head is-centred">
+      <span class="eyebrow" data-v="slide">Ways to work together</span>
+      <span class="wdm"><h2 class="h2" id="work-h" data-v="mask-up">Three ways in.</h2></span>
     </div>
-    <ul class="ways">
-      <li><article class="way" data-v="settle"><span class="kind">Start here</span><h3 class="h3">Discovery call</h3><p>A short conversation to see whether we are the right fit, with no obligation to continue.</p><a class="tlink" href="#contact" data-subject="Discovery call" data-v="slide">Request a call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></article></li>
-      <li><article class="way way-deep" data-v="settle"><span class="kind">The core work</span><h3 class="h3">1:1 coaching</h3><p>Ongoing sessions focused on your patterns, clarity and lasting change. In London or online.</p><a class="tlink" href="#contact" data-subject="1:1 coaching" data-v="slide">Ask about 1:1 <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></article></li>
-      <li><article class="way" data-v="settle"><span class="kind">Groups &amp; teams</span><h3 class="h3">Workshops &amp; training</h3><p>Interactive sessions that combine reflection, creativity and practical tools.</p><a class="tlink" href="#contact" data-subject="Workshops &amp; training" data-v="slide">Enquire <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></article></li>
+    <ul class="ways" data-xo-group>
+      <li><article data-v="build" class="way"><span class="kind" data-v="rise">Start here</span><h3 class="h3">Discovery call</h3><p>A short conversation to see whether we are the right fit, with no obligation to continue.</p><a data-v="slide" class="tlink" href="#contact" data-subject="Discovery call">Request a call <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></article></li>
+      <li><article data-v="build" class="way way-deep"><span class="kind" data-v="rise">The core work</span><h3 class="h3">1:1 coaching</h3><p>Ongoing sessions focused on your patterns, clarity and lasting change. In London or online.</p><a data-v="slide" class="tlink" href="#contact" data-subject="1:1 coaching">Ask about 1:1 <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></article></li>
+      <li><article data-v="build" class="way"><span class="kind" data-v="rise">Groups &amp; teams</span><h3 class="h3">Workshops &amp; training</h3><p>Interactive sessions that combine reflection, creativity and practical tools.</p><a data-v="slide" class="tlink" href="#contact" data-subject="Workshops &amp; training">Enquire <svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></a></article></li>
     </ul>
   </div>
 </section>
 
-<!-- 6 · voice: quote kindles, attribution rises, mark stamps -->
-<section class="section voice" aria-labelledby="voice-h">
+<!-- 6 · voice -->
+<section class="section voice wdx" aria-label="What a client says">
   <div class="container">
-    <h2 class="sr-only" id="voice-h">What a client says</h2>
     <figure class="quote">
-      <span class="qmark" data-v="stamp" aria-hidden="true">“</span>
-      <blockquote class="h2" data-kindle>It was giving me comfort to be in Alex’s presence.</blockquote>
-      <figcaption data-v="rise">Vera, client</figcaption>
+      <span class="qmark" data-v="dock" style="--dx:0;--rot:-8deg" aria-hidden="true">“</span>
+      <span class="wdm"><blockquote class="h2" data-v="mask-up">It was giving me comfort to be in Alex’s presence.</blockquote></span>
+      <figcaption data-v="slide">Vera, client</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- 7 · about: photo settles, text rises, credentials slide -->
-<section class="section about" id="about" aria-labelledby="about-h">
+<!-- 7 · about -->
+<section class="section about wdx" id="about" aria-labelledby="about-h">
   <div class="container about-grid">
-    <div class="about-photo" data-v="settle"><img src="assets/img/alex-color.webp" width="785" height="730" loading="lazy" decoding="async" alt="Alex Moudiotis smiling, in colour"></div>
+    <div class="about-photo" data-v="build" style="--c0:inset(100% 0 0 0 round 240px 240px 20px 20px)"><img src="assets/img/alex-bw.webp" width="402" height="432" loading="lazy" decoding="async" alt="Alex Moudiotis, black and white portrait"></div>
     <div class="about-body">
-      <span class="eyebrow" data-v="rise">Meet Alex</span>
-      <h2 class="h2" id="about-h" data-v="rise">A coach shaped by teaching, the arts and starting over.</h2>
+      <span class="eyebrow" data-v="slide">Meet Alex</span>
+      <span class="wdm"><h2 class="h2" id="about-h" data-v="mask-up">A coach shaped by teaching, the arts and starting over.</h2></span>
       <p data-v="rise">I’m Alex Moudiotis, a London-based coach with a background in teaching and the arts. I studied Fine Arts at the Aristotle University of Thessaloniki and hold an Integrated Master in Visual and Applied Arts.</p>
       <p data-v="rise">Starting over in a new country taught me what it takes to speak your own truth. That is the work I do with clients: often after a break-up, a career change or a life transition.</p>
-      <ul class="creds">
+      <ul class="creds" data-xo-group>
         <li data-v="slide"><span class="ct">Accreditation</span><span class="cv">Elite Life Coach, Level 5 · IAPC&amp;M</span></li>
         <li data-v="slide"><span class="ct">Trained at</span><span class="cv">Evolve Life Coaching College</span></li>
         <li data-v="slide"><span class="ct">Sessions</span><span class="cv">London &amp; online</span></li>
@@ -164,26 +164,26 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
   </div>
 </section>
 
-<!-- 8 · contact (dark): heading rises, panel settles, details slide -->
-<section class="section contact dark" id="contact" aria-labelledby="contact-h">
+<!-- 8 · contact (dark) -->
+<section class="section contact dark wdx" id="contact" aria-labelledby="contact-h">
   <div class="container contact-grid">
     <div class="contact-copy">
-      <span class="eyebrow" data-v="rise">Get in touch</span>
-      <h2 class="h2" id="contact-h" data-v="rise">The next step is small. Let’s talk.</h2>
+      <span class="eyebrow" data-v="slide">Get in touch</span>
+      <span class="wdm"><h2 class="h2" id="contact-h" data-v="mask-up">The next step is small. Let’s talk.</h2></span>
       <p class="lead" data-v="rise">Tell me a little about where you are. Every message is read personally and answered by email.</p>
       <p class="contact-mail" data-v="slide"><span class="ct">Email</span><a href="mailto:inwardlab@gmail.com">inwardlab@gmail.com</a></p>
     </div>
-    <form id="clientContactForm" class="form-panel" novalidate data-v="settle">
+    <form id="clientContactForm" class="form-panel form-fields" novalidate>
       <input type="hidden" name="_to" value="inwardlab@gmail.com">
       <input type="hidden" name="_key" value="k_sC6YnmbF9xyTT6bGdRm55WKc">
       <input type="text" name="_hp" value="" autocomplete="off" tabindex="-1" aria-hidden="true" style="display:none;position:absolute;left:-9999px;">
       <div class="form-row">
-        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
-        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        <div class="field" data-v="build"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field" data-v="build"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
       </div>
       <div class="form-row">
-        <div class="field"><label for="f-phone">Phone <span class="opt">(optional)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
-        <div class="field"><label for="serviceSelect">About</label>
+        <div class="field" data-v="build"><label for="f-phone">Phone <span class="opt">(optional)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="field" data-v="build"><label for="serviceSelect">About</label>
           <select id="serviceSelect" name="subject">
             <option value="">Choose a topic</option>
             <option>Discovery call</option>
@@ -196,34 +196,35 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
             <option>Something else</option>
           </select></div>
       </div>
-      <div class="field"><label for="f-message">Message</label><textarea id="f-message" name="message" rows="5" placeholder="A few sentences is plenty."></textarea></div>
+      <div class="field" data-v="build"><label for="f-message">Message</label><textarea id="f-message" name="message" rows="5" placeholder="A few sentences is plenty."></textarea></div>
       <div class="form-foot">
-        <button type="submit" class="btn btn-light btn-lg btn-submit">Send message</button>
-        <p class="privacy">Your details are used only to reply to you.</p>
+        <button data-v="rise" type="submit" class="btn btn-light btn-lg btn-submit">Send message</button>
+        <p class="privacy" data-v="rise">Your details are used only to reply to you.</p>
       </div>
       <p id="formStatus" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
 
-<!-- 9 · questions: heading rises, items slide, rule draws -->
-<section class="section" id="faq" aria-labelledby="faq-h">
+<!-- 9 · questions -->
+<section class="section wdx" id="faq" aria-labelledby="faq-h">
   <div class="container faq-grid">
     <div class="section-head">
-      <span class="eyebrow" data-v="rise">Before you reach out</span>
-      <h2 class="h2" id="faq-h" data-v="rise">Questions people ask.</h2>
-      <span class="rule" data-v="draw-x" aria-hidden="true"></span>
+      <span class="eyebrow" data-v="slide">Before you reach out</span>
+      <span class="wdm"><h2 class="h2" id="faq-h" data-v="mask-up">Questions people ask.</h2></span>
+      <span class="rule" data-v="grow" aria-hidden="true"></span>
     </div>
-    <ul class="faq-list">
-      <li class="faq-item" data-v="slide"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-1" id="fq-1">Is this therapy? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
+    <div class="faq-col"><span class="rule list-rule" data-v="grow" aria-hidden="true"></span>
+    <ul class="faq-list" data-xo-group>
+      <li class="faq-item" data-v="build"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-1" id="fq-1">Is this therapy? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
         <div class="faq-a" id="fa-1" role="region" aria-labelledby="fq-1"><div><p>No. Therapy often looks back to heal; coaching looks forward to move. If something needs therapeutic support, I will say so and help you find the right person.</p></div></div></li>
-      <li class="faq-item" data-v="slide"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-2" id="fq-2">Do I need to know what I want to work on? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
+      <li class="faq-item" data-v="build"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-2" id="fq-2">Do I need to know what I want to work on? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
         <div class="faq-a" id="fa-2" role="region" aria-labelledby="fq-2"><div><p>No. Most people arrive with a feeling, not a plan. The discovery call is where we put words to it.</p></div></div></li>
-      <li class="faq-item" data-v="slide"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-3" id="fq-3">In person or online? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
+      <li class="faq-item" data-v="build"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-3" id="fq-3">In person or online? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
         <div class="faq-a" id="fa-3" role="region" aria-labelledby="fq-3"><div><p>Both. I work with clients in London and online. We choose whatever helps you show up most honestly.</p></div></div></li>
-      <li class="faq-item" data-v="slide"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-4" id="fq-4">What if I’m not sure it’s for me? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
+      <li class="faq-item" data-v="build"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa-4" id="fq-4">What if I’m not sure it’s for me? <span class="ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></button></h3>
         <div class="faq-a" id="fa-4" role="region" aria-labelledby="fq-4"><div><p>That is what the discovery call is for: an honest conversation about whether this is the right next step, with no obligation.</p></div></div></li>
-    </ul>
+    </ul></div>
   </div>
 </section>
 </main>
@@ -242,5 +243,6 @@ setTimeout(function () { if (!window.__inwardReady) document.documentElement.cla
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/hero.js" defer></script>
 <script src="assets/js/contact-form.js" defer></script>
+<script src="assets/js/xoro.js" defer></script>
 </body>
 </html>

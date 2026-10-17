@@ -1,4 +1,4 @@
-/* The Inward Lab: nav, progress, rings, reveals, FAQ, form topic. No dependencies. */
+/* The Inward Lab: nav, progress, FAQ, form topic (section motion: xoro.js). No dependencies. */
 (function () {
   'use strict';
   var doc = document, root = doc.documentElement;
@@ -8,20 +8,17 @@
   syncReduce(); if (mqR.addEventListener) mqR.addEventListener('change', syncReduce);
 
   /* ---- one shared scroll frame: a single read per frame, writes only transform / class ---- */
-  var rings = mqR.matches ? null : doc.getElementById('rings'), heroEl = doc.getElementById('top'), heroH = heroEl ? heroEl.offsetHeight : 1;
-  var nav = doc.getElementById('nav'), bar = doc.getElementById('progress'), tick = false, lastY = 0;
+    var nav = doc.getElementById('nav'), bar = doc.getElementById('progress'), tick = false, lastY = 0;
   function frame() {
     tick = false;
     var y = window.pageYOffset, max = root.scrollHeight - window.innerHeight;
     bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0).toFixed(4) + ')';
     nav.classList.toggle('scrolled', y > 40);
-    /* rings move inward as the hero leaves: scale and turn follow scroll, transform only */
-    if (rings && y < heroH) { var p = y / heroH; rings.style.transform = 'scale(' + (1 - p * .18).toFixed(4) + ') rotate(' + (p * 12).toFixed(2) + 'deg)'; }
     if (menuOpen && Math.abs(y - lastY) > 12) closeMenu(false);   /* scrolling closes the panel */
   }
   function onScroll() { if (!tick) { tick = true; requestAnimationFrame(frame); } }
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', function () { heroH = heroEl ? heroEl.offsetHeight : 1; onScroll(); }, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
 
   /* ---- mobile menu: right-hand panel, X, scrim, Esc, swipe, scroll ---- */
   var panel = doc.getElementById('navLinks'), burger = doc.getElementById('burger'),
@@ -45,30 +42,10 @@
   doc.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(true); });
   panel.addEventListener('click', function (e) { if (e.target.closest('a')) closeMenu(false); });
   var tx = 0;
-  panel.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
-  panel.addEventListener('touchend', function (e) { if (Math.abs(e.changedTouches[0].clientX - tx) > 60) closeMenu(false); }, { passive: true });
+  /* swipe left or right anywhere while the panel is open closes it */
+  doc.addEventListener('touchstart', function (e) { if (menuOpen) tx = e.touches[0].clientX; }, { passive: true });
+  doc.addEventListener('touchend', function (e) { if (menuOpen && Math.abs(e.changedTouches[0].clientX - tx) > 60) closeMenu(false); }, { passive: true });
   window.matchMedia('(min-width: 941px)').addEventListener('change', function (e) { if (e.matches) closeMenu(false); });
-
-  /* ---- kindle: split a statement into words so each can light up in turn ---- */
-  function splitWords(el) {
-    var words = [];
-    (function walk(node) {
-      [].slice.call(node.childNodes).forEach(function (n) {
-        if (n.nodeType === 3) {
-          var frag = doc.createDocumentFragment();
-          n.nodeValue.split(/(\s+)/).forEach(function (p) {
-            if (!p) return;
-            if (/^\s+$/.test(p)) { frag.appendChild(doc.createTextNode(p)); return; }
-            var s = doc.createElement('span'); s.textContent = p; s.className = 'kw'; s.setAttribute('data-v', 'kindle'); words.push(s); frag.appendChild(s);
-          });
-          node.replaceChild(frag, n);
-        } else if (n.nodeType === 1) walk(n);
-      });
-    })(el);
-    var step = Math.min(28, 1000 / Math.max(words.length, 1));
-    words.forEach(function (s, i) { s.style.setProperty('--d', Math.round(i * step) + 'ms'); });
-  }
-  [].forEach.call(doc.querySelectorAll('[data-kindle]'), splitWords);
 
   /* ---- links that open the form with a topic chosen ---- */
   var sel = doc.getElementById('serviceSelect');
@@ -87,22 +64,6 @@
     set(i === 0);
     b.addEventListener('click', function () { set(!it.classList.contains('open')); });
   });
-
-  /* ---- reveals: start BEFORE the element enters (bottom margin +12%), <= 2 x 60 ms stagger inside one batch ---- */
-  var els = [].slice.call(doc.querySelectorAll('[data-v]'));
-  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); }
-  else {
-    var io = new IntersectionObserver(function (entries) {
-      var n = 0;
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        var el = en.target; io.unobserve(el);
-        if (!el.style.getPropertyValue('--d')) { el.style.setProperty('--d', Math.min(n, 2) * 60 + 'ms'); n++; }
-        el.classList.add('in');
-      });
-    }, { rootMargin: '0px 0px 12% 0px', threshold: 0 });
-    els.forEach(function (e) { io.observe(e); });
-  }
 
   /* ---- section highlight in the nav ---- */
   var links = [].slice.call(doc.querySelectorAll('#navLinks a[href^="#"]:not(.btn)'));
