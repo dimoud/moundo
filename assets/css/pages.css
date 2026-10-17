@@ -26,7 +26,11 @@
   .nav-sub { flex-direction: column; align-items: flex-end; }
   .nav-sub-t .dn { display: none; }
   .sub { display: flex; flex-direction: column; align-items: flex-end; margin: 0 0 6px; padding-right: 12px; border-right: 1px solid var(--line); }
-  .sub a { font-size: 16px !important; font-family: var(--sans) !important; font-weight: 400 !important; color: var(--ink-soft); min-height: 44px !important; }
+  /* same type as every other panel entry (17/10); the rule on the right is the only hierarchy cue.
+     Long labels wrap inside the panel, right-aligned, instead of running past its left edge. */
+  .sub li { max-width: 100%; }
+  .sub a { font-size: 18px !important; font-family: var(--sans) !important; font-weight: 500 !important; color: inherit; min-height: 44px !important;
+           white-space: normal !important; text-align: right; line-height: 1.3; padding: 8px 0; }
   .nav-sub-t { pointer-events: none; }   /* in the panel the group name is a label; its pages are listed under it */
   .lang { display: flex; gap: 6px; margin-top: var(--s2); }
 }

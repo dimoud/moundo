@@ -21,7 +21,7 @@
   window.addEventListener('resize', onScroll, { passive: true });
 
   /* ---- mobile menu: right-hand panel, X, scrim, Esc, swipe, scroll ---- */
-  var panel = doc.getElementById('navLinks'), burger = doc.getElementById('burger'),
+  var panel = doc.getElementById('navLinks'), burger = doc.getElementById('hamburger'),
       scrim = doc.getElementById('scrim'), closeBtn = doc.getElementById('navClose'), menuOpen = false;
   var openLabel = burger.getAttribute('aria-label');
   function openMenu() {
