@@ -88,7 +88,7 @@
 .area::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--paper); transform: scaleY(0); transform-origin: bottom; transition: transform .45s var(--ease); }
 .area:hover::before, .area:focus-visible::before { transform: scaleY(1); }
 .area .n { font-family: var(--mono); font-size: var(--t-label); color: var(--accent); letter-spacing: .1em; }
-.area .t { font-family: var(--serif); font-size: var(--t-h3); line-height: 1.15; }
+.area .t { font-family: var(--serif); font-size: var(--t-h3); line-height: 1.15; text-wrap: balance; }
 .area .d { color: var(--ink-soft); }
 .area .arr { width: 20px; height: 20px; color: var(--accent); transition: transform .35s var(--ease); }
 .area:hover .arr, .area:focus-visible .arr { transform: translateX(6px); }
@@ -219,7 +219,7 @@
   .steps { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .form-panel { padding: var(--s4) var(--s3); }
-  .area { padding: 24px 4px; gap: 4px 16px; }
+  .area { padding: 24px 4px; gap: 4px 12px; grid-template-columns: 32px 1fr 24px; }
   .qmark { font-size: 110px; height: 48px; }
   .cv { text-align: right; }
 }
