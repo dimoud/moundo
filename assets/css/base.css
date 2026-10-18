@@ -84,6 +84,8 @@ a { color: inherit; }
 
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
 .section { padding: var(--sec-top) 0 var(--sec-bot); position: relative; }
+/* anchor targets clear the fixed header (07-elegxos §50) */
+section[id], [id]:target { scroll-margin-top: 96px; }
 /* two light sections in a row: one gap, not two (18/10) */
 .section:not(.dark) + .section:not(.dark) { padding-top: calc(var(--sec-top) * .5); }
 .section:not(.dark):has(+ .section:not(.dark)) { padding-bottom: calc(var(--sec-bot) * .5); }

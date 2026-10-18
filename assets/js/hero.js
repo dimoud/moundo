@@ -1,5 +1,5 @@
 /* Hero (18/10): three synchronised acts in CSS (see sections.css), then one quiet breath.
-   Afterwards only the eyebrow breathes, every 6.47 s (2.47 s motion + 4.00 s rest, ratio φ).
+   Afterwards only the eyebrow breathes, three times, every 6.47 s (2.47 s motion + 4.00 s rest, ratio φ).
    The visitor can drag "Movement"; on release it returns with the pointer's own velocity (Elatirio).
    Off screen, hidden tab or reduced motion = no breathing. */
 (function () {
@@ -53,7 +53,8 @@
   }
   function startLife() {
     if (lifeT || Elatirio.reduced()) return;
-    lifeT = setTimeout(function () { pulse(); lifeT = setInterval(pulse, PERIOD); }, PERIOD - ACTIVE);
+    var n = 0;   // three breaths, then stillness (WCAG 2.2.2: no endless motion without a pause control)
+    lifeT = setTimeout(function () { pulse(); n++; lifeT = setInterval(function () { if (++n > 3) { clearInterval(lifeT); return; } pulse(); }, PERIOD); }, PERIOD - ACTIVE);
   }
   function stopAll() { if (eye && eye.getAnimations) eye.getAnimations({ subtree: true }).forEach(function (a) { if (!(a instanceof CSSAnimation)) a.cancel(); }); }
   if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; if (!onScreen) stopAll(); }, { threshold: .3 }).observe(hero);
