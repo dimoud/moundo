@@ -237,3 +237,11 @@
 @media (prefers-reduced-motion: reduce) {
   .anim-ready .hero:not(.hero-in) .hero-photo { opacity: 1; }
 }
+
+/* "Four places where change usually starts." on one line wherever it fits (18/10) */
+@media (min-width: 941px) {
+  .areas .section-head { max-width: none; }
+  #help-h { white-space: nowrap; text-wrap: nowrap; }
+  html[lang="el"] #help-h { font-size: min(var(--t-h2), 3.5vw); }
+  html[lang="es"] #help-h { font-size: min(var(--t-h2), 3.9vw); }
+}
