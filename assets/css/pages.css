@@ -90,7 +90,7 @@
 .cta-band .eyebrow::after { content: ""; width: 28px; height: 1px; background: currentColor; }
 .rel-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 12px; }
 .rel-list a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 100px; background: var(--night-2); color: var(--on-night); text-decoration: none; font-size: var(--t-small); transition: background-color var(--dur-ui) var(--ease-ui); }
-.rel-list a:hover { background: #2f3b2a; }
+.rel-list a:hover { background: #525646; }
 .rel-list .arr { width: 14px; height: 14px; color: var(--glow); }
 .band { margin-top: var(--s6); text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--s3); }
 .band .lead { max-width: 46ch; }
@@ -204,3 +204,11 @@ html[lang="el"] .page-hero .display, html[lang="es"] .page-hero .display { font-
   .rel-list a:hover { transform: translateX(6px); }
   .contact-mail a:hover { color: var(--taupe-light); }
 }
+
+/* ---------- form fields on the lighter dark sections (18/10) ---------- */
+.contact .form-panel { box-shadow: 0 30px 60px -40px rgba(0,0,0,.45); }
+.contact .field input, .contact .field select, .contact .field textarea { background: rgba(239,235,224,.08); border-color: rgba(239,235,224,.26); }
+
+/* ---------- buttons (18/10, client): no arrow, smaller corner radius ---------- */
+.btn { border-radius: 8px; }
+.btn .arr { display: none; }

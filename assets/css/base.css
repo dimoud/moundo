@@ -37,8 +37,10 @@
   --accent-hover: #575A46;
   --accent-soft: #7F8269;   /* the brand olive: strokes, fills, large surfaces */
   --accent-tint: #DCDDCF;
-  --deep: #404334; --deep-soft: #BFC1AE; --olive-light: #B3B69B; --brand-olive: #7F8269;
-  --night: #1C2419; --night-2: #252F21; --on-night: #EFEBE0; --on-night-soft: #BFC4B2; --glow: #B3B69B;
+  --deep: #404334; --deep-soft: #BFC1AE; --olive-light: #BCBFA4; --brand-olive: #7F8269;
+  /* dark sections, lighter (18/10, client): olive charcoal instead of near-black.
+     Contrast on --night: text 9.1:1, soft 6.6:1, olive 5.7:1; on --night-2 (panels): soft 5.5:1, olive 4.8:1. */
+  --night: #3B3F31; --night-2: #474B3C; --on-night: #EFEBE0; --on-night-soft: #C8CCBC; --glow: #BCBFA4;
   /* accent aliases used by the motion/hover layer (18/10); the palette itself is the original one */
   --sage-brand: var(--glow); --taupe: var(--glow); --taupe-light: var(--glow); --taupe-deep: var(--accent);
   --line: rgba(32,39,31,.16); --line-soft: rgba(32,39,31,.09);
