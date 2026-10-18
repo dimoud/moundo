@@ -81,11 +81,11 @@
 .statement .big.zip { max-width: none; font-size: clamp(22px, 5.4vw, 92px); line-height: 1.08; text-wrap: nowrap; white-space: nowrap; }
 .statement .zl { display: block; position: relative; left: calc(var(--zo, 0) * var(--zk, 1.6em)); }
 /* resting place: staggered around the centre, not aligned (left, right, left, right, near centre) */
-.statement .zl:nth-child(1) { --zo: -1; }
+.statement .zl:nth-child(1) { --zo: .3; }
 .statement .zl:nth-child(2) { --zo: .8; }
 .statement .zl:nth-child(3) { --zo: -.6; }
 .statement .zl:nth-child(4) { --zo: 1; }
-.statement .zl:nth-child(5) { --zo: -.2; }
+.statement .zl:nth-child(5) { --zo: 0; font-size: 1.2em; }
 @media (max-width: 734px) { .statement .zl { --zk: .45em; } }
 .sfx-zip .zl { will-change: transform, opacity; }
 .statement .rule { margin: var(--s6) auto 0; width: 120px; color: var(--accent); opacity: 1; height: 2px; }

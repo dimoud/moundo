@@ -62,8 +62,8 @@
     zip: function (el) {
       var ls = [].slice.call(el.querySelectorAll('.zl')); if (!ls.length) return null;
       el.classList.add('sfx-zip');
-      var n = ls.length, lag = .5 / n, span = 1 - lag * (n - 1), last = [];
-      return { el: el, a: 1, b: mobile ? .3 : .38, set: function (p) {
+      var n = ls.length, lag = .6 / n, span = 1 - lag * (n - 1), last = [];
+      return { el: el, a: 1.05, b: mobile ? .12 : .16, set: function (p) {
         var w = window.innerWidth * (mobile ? .9 : .6);
         for (var i = 0; i < n; i++) {
           var q = (p - i * lag) / span; q = q < 0 ? 0 : q > 1 ? 1 : q;
