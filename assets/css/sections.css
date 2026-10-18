@@ -12,7 +12,7 @@
 .hero .display { margin-top: var(--s3); color: var(--on-night); }
 .hero-sub { margin-top: var(--s4); max-width: 34ch; }
 .hero-cta { margin-top: var(--s5); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s4); }
-.move { display: inline-block; font-style: italic; color: var(--taupe); cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.move { display: inline-block; font-style: italic; color: var(--glow); cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .move.grabbing { cursor: grabbing; }
 
 .hero-media { position: absolute; top: 0; right: 0; bottom: 0; width: 50%; }
@@ -20,7 +20,7 @@
 .hero-photo picture, .hero-photo img { display: block; width: 100%; height: 100%; }
 .hero-photo img { object-fit: cover; object-position: 52% 30%; }
 /* the photo meets the dark page on its left edge (part of the final frame, not an effect) */
-.hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(30,31,27,.6) 0, rgba(30,31,27,0) 120px), linear-gradient(90deg, var(--night) 0%, rgba(30,31,27,.55) 14%, rgba(30,31,27,0) 34%); pointer-events: none; }
+.hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(28,36,25,.6) 0, rgba(28,36,25,0) 120px), linear-gradient(90deg, var(--night) 0%, rgba(28,36,25,.55) 14%, rgba(28,36,25,0) 34%); pointer-events: none; }
 .photo-chip { position: absolute; bottom: 40px; left: 50%; translate: -50% 0; white-space: nowrap; z-index: 2; background: var(--on-night); color: var(--night); border-radius: 100px; padding: 10px 18px; font-size: var(--t-small); font-weight: 500; }
 .photo-chip .lbl { font-family: var(--mono); font-size: var(--t-label); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-right: 6px; }
 
@@ -37,6 +37,7 @@
 .h-measure { width: fit-content; max-width: 100%; }
 .h-measure .hero-sub { width: 0; min-width: 100%; max-width: none; text-wrap: pretty; }   /* same measure as the title above */
 .h-l1 { display: inline-block; }
+.h-l2 { display: block; margin-top: .32em; }   /* a breath between the two sentences (18/10) */
 .hero-in .hero-photo { animation: h-fade 1400ms cubic-bezier(.4,0,.2,1) both; }
 .hero-in .h-l1       { animation: h-wipe 1400ms cubic-bezier(.33,0,.15,1) both; animation-delay: calc(300ms * var(--hk)); }
 .hero-in .h-end      { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(3000ms * var(--hk)); }
@@ -150,7 +151,7 @@
 .form-foot { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
 .privacy { font-size: var(--t-small); color: var(--on-night-soft); }
 #formStatus { display: none; font-size: var(--t-small); padding: 12px 16px; border-radius: 12px; }
-#formStatus.status-success { background: rgba(126,130,101,.22); color: var(--on-night); }
+#formStatus.status-success { background: rgba(179,182,155,.16); color: var(--on-night); }
 #formStatus.status-error { background: rgba(232,164,140,.16); color: #F6D3C6; }
 
 /* ---------- FAQ ---------- */
@@ -196,7 +197,7 @@
 @media (max-width: 940px) {
   .hero { padding: 104px 0 0; min-height: auto; display: block; }
   .hero-media { position: relative; width: auto; height: auto; aspect-ratio: 762 / 733; margin: var(--s5) calc(var(--gutter) * -1) 0; }
-  .hero-photo::after { background: linear-gradient(180deg, var(--night) 0%, rgba(30,31,27,0) 22%); }
+  .hero-photo::after { background: linear-gradient(180deg, var(--night) 0%, rgba(28,36,25,0) 22%); }
   .hero-grid, .about-grid, .contact-grid, .faq-grid { grid-template-columns: 1fr; gap: var(--s5); }
   .steps { grid-template-columns: 1fr 1fr; row-gap: var(--s5); }
   .ways { grid-template-columns: 1fr; }

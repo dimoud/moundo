@@ -10,7 +10,7 @@
 .sub { list-style: none; }
 @media (min-width: 941px) {
   .sub { position: absolute; top: calc(100% - 4px); left: -18px; min-width: 300px; padding: 10px; border-radius: 16px;
-         background: var(--paper); color: var(--ink); box-shadow: 0 24px 60px -28px rgba(34,35,31,.45);
+         background: var(--paper); color: var(--ink); box-shadow: 0 24px 60px -28px rgba(32,39,31,.45);
          opacity: 0; visibility: hidden; translate: 0 6px; transition: opacity var(--dur-ui) var(--ease-ui), translate var(--dur-ui) var(--ease-ui), visibility 0s var(--dur-ui); }
   .nav-sub:hover .sub, .nav-sub:focus-within .sub, .nav-sub.open .sub { opacity: 1; visibility: visible; translate: 0 0; transition-delay: 0s; }
   .nav-sub:hover .dn, .nav-sub:focus-within .dn, .nav-sub.open .dn { transform: rotate(180deg); }
@@ -90,7 +90,7 @@
 .cta-band .eyebrow::after { content: ""; width: 28px; height: 1px; background: currentColor; }
 .rel-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 12px; }
 .rel-list a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 100px; background: var(--night-2); color: var(--on-night); text-decoration: none; font-size: var(--t-small); transition: background-color var(--dur-ui) var(--ease-ui); }
-.rel-list a:hover { background: var(--night-2); }
+.rel-list a:hover { background: #2f3b2a; }
 .rel-list .arr { width: 14px; height: 14px; color: var(--glow); }
 .band { margin-top: var(--s6); text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--s3); }
 .band .lead { max-width: 46ch; }
@@ -171,23 +171,22 @@ html[lang="el"] .page-hero .display, html[lang="es"] .page-hero .display { font-
 }
 
 /* ---------- hover emphasis (18/10): every actionable part answers the pointer clearly ----------
-   lift + soft shadow on buttons and cards, taupe as the one accent mark (underlines, numbers, dots).
+   lift + soft shadow on buttons and cards, the glow olive as the accent mark (underlines, numbers, dots).
    Pointer devices only; keyboard focus gets the same through :focus-visible where it matters. */
 .statement { overflow-x: clip; }   /* the phrase that travels in from the right never widens the page */
 .photo-chip { text-decoration: none; transition: transform var(--dur-ui) var(--ease-ui), box-shadow var(--dur-ui) var(--ease-ui); }
-.tlink::after { background: var(--taupe); height: 2px; }
-.dark .tlink::after { background: var(--taupe-light); }
+.tlink::after { height: 2px; }
 @media (hover: hover) {
   .btn { will-change: transform; }
-  .btn:hover, .btn:focus-visible { transform: translateY(-3px); box-shadow: 0 14px 28px -14px rgba(34,35,31,.55), 0 0 0 4px rgba(126,130,101,.18); }
-  .dark .btn:hover, .dark .btn:focus-visible { box-shadow: 0 16px 32px -14px rgba(0,0,0,.7), 0 0 0 4px rgba(147,133,124,.28); }
+  .btn:hover, .btn:focus-visible { transform: translateY(-3px); box-shadow: 0 14px 28px -14px rgba(32,39,31,.55), 0 0 0 4px rgba(102,105,83,.18); }
+  .dark .btn:hover, .dark .btn:focus-visible { box-shadow: 0 16px 32px -14px rgba(0,0,0,.7), 0 0 0 4px rgba(179,182,155,.28); }
   .btn:active { transform: translateY(-1px); box-shadow: none; }
   .btn-light:hover { background: #fff; }
   .tlink:hover { color: var(--accent-hover); }
   .dark .tlink:hover { color: var(--on-night); }
-  .photo-chip:hover, .photo-chip:focus-visible { transform: translateY(-4px); box-shadow: 0 14px 30px -12px rgba(0,0,0,.55), 0 0 0 4px rgba(147,133,124,.35); }
+  .photo-chip:hover, .photo-chip:focus-visible { transform: translateY(-4px); box-shadow: 0 14px 30px -12px rgba(0,0,0,.55), 0 0 0 4px rgba(179,182,155,.35); }
   .way { transition: transform .35s var(--ease-ui), box-shadow .35s var(--ease-ui); }
-  .way:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -24px rgba(34,35,31,.45); }
+  .way:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -24px rgba(32,39,31,.45); }
   .way:hover .kind { color: var(--taupe-deep); }
   .way-deep:hover .kind { color: var(--taupe-light); }
   .area:hover .n { color: var(--taupe-deep); }

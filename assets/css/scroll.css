@@ -18,12 +18,12 @@
 .sfx-words .w.on { color: var(--on-night); }
 .sfx-type .c { opacity: 0; }
 .sfx-type .c.on { opacity: 1; }
-.sfx-type .c.caret { box-shadow: 2px 0 0 0 var(--taupe); }
+.sfx-type .c.caret { box-shadow: 2px 0 0 0 currentColor; }
 .sfx-type.done .c.caret { box-shadow: none; }
 
 .method-fill.sfx-fill { transform: scaleX(0); }
 .method-fill.sfx-fill::after { content: ""; position: absolute; right: -5px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-radius: 50%;
-  background: var(--taupe); box-shadow: 0 0 0 6px rgba(147,133,124,.22); }
+  background: var(--taupe); box-shadow: 0 0 0 6px rgba(179,182,155,.22); }
 .sfx-method .step { opacity: .32; transform: translateY(14px); transition: opacity .6s var(--ease-ui), transform .6s var(--ease-ui); }
 .sfx-method .step .sn { transition: color .4s var(--ease-ui); }
 .sfx-method .step .h3 { position: relative; display: inline-block; }

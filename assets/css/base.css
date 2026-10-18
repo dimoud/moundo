@@ -28,21 +28,20 @@
   src: url("../fonts/ibm-plex-mono-500-latin.woff2") format("woff2"); }
 
 :root {
-  /* colour (18/10, client): one muted sage #7E8265 carries the brand; taupe #93857C is used sparingly, for emphasis
-     (the word "Movement", the active step, hover marks). Neutral warm darks instead of green-black.
-     Small text needs 4.5:1, so it uses shades of the same two hues: #5F634B on light (5.2:1), #A3A68A on dark (6.6:1). */
-  --sage-brand: #7E8265; --taupe: #93857C;
-  --canvas: #ECEAE2; --sage: #CACBBE; --paper: #F5F2EB; --paper-2: #EEEAE0; --paper-3: #E2DDD0;
-  --ink: #22231F; --ink-soft: #55574D; --ink-faint: #5A5C52;
-  --accent: #5F634B;        /* small text + filled buttons on light (5.2:1 / 5.6:1 with paper text) */
-  --accent-hover: #4E5240;
-  --accent-soft: #7E8265;   /* decorative strokes, large surfaces */
-  --accent-tint: #DCDCD1;
-  --taupe-light: #B3A79E;   /* taupe on dark, small text (7:1) */
-  --taupe-deep: #6E625A;    /* taupe on light, small text (≥ 4.5:1) */
-  --deep: #3A3B34; --deep-soft: #BDBFAE; --olive-light: #A3A68A; --brand-olive: #7E8265;
-  --night: #1E1F1B; --night-2: #282925; --on-night: #EFEBE0; --on-night-soft: #C2BFB6; --glow: #A3A68A;
-  --line: rgba(34,35,31,.16); --line-soft: rgba(34,35,31,.09);
+  /* colour — olive family re-based on the client's #7F8269 (18/10), lighter and greyer than before.
+     #7F8269 itself: logo box, strokes, fills. Small text needs 4.5:1, so it takes the nearest passing shade
+     of the same olive: #666953 on light (4.7:1), #B3B69B on dark (7.7:1). Neutrals unchanged. */
+  --canvas: #ECEAE2; --sage: #C6C8B5; --paper: #F5F2EB; --paper-2: #EEEAE0; --paper-3: #E2DDD0;
+  --ink: #20271F; --ink-soft: #525A4A; --ink-faint: #565D4B;
+  --accent: #666953;        /* text + filled buttons on light (>= 4.5:1) */
+  --accent-hover: #575A46;
+  --accent-soft: #7F8269;   /* the brand olive: strokes, fills, large surfaces */
+  --accent-tint: #DCDDCF;
+  --deep: #404334; --deep-soft: #BFC1AE; --olive-light: #B3B69B; --brand-olive: #7F8269;
+  --night: #1C2419; --night-2: #252F21; --on-night: #EFEBE0; --on-night-soft: #BFC4B2; --glow: #B3B69B;
+  /* accent aliases used by the motion/hover layer (18/10); the palette itself is the original one */
+  --sage-brand: var(--glow); --taupe: var(--glow); --taupe-light: var(--glow); --taupe-deep: var(--accent);
+  --line: rgba(32,39,31,.16); --line-soft: rgba(32,39,31,.09);
   /* type */
   --serif: "Newsreader", "Inward Serif GR", Georgia, "Times New Roman", serif;
   --sans: "Hanken Grotesk", "Inward Sans GR", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -149,11 +148,11 @@ a { color: inherit; }
 .burger span, .burger span::before, .burger span::after { display: block; width: 20px; height: 1.5px; background: currentColor; position: relative; content: ""; }
 .burger span::before { position: absolute; top: -6px; } .burger span::after { position: absolute; top: 6px; }
 .panel-close { display: none; }
-.scrim { position: fixed; inset: 0; background: rgba(34,35,31,.35); opacity: 0; pointer-events: none; transition: opacity .3s var(--ease-ui); z-index: 90; }  /* below the header (z 100), whose panel creates the menu layer */
+.scrim { position: fixed; inset: 0; background: rgba(32,39,31,.35); opacity: 0; pointer-events: none; transition: opacity .3s var(--ease-ui); z-index: 90; }  /* below the header (z 100), whose panel creates the menu layer */
 @media (max-width: 940px) {
   .burger { display: inline-flex; }
   .nav-cta-desktop { display: none; }
-  .nav-links { position: fixed; top: 0; right: 0; bottom: 0; width: min(82vw, 340px); background: var(--paper); z-index: 150; flex-direction: column; align-items: flex-end; justify-content: flex-start; gap: 4px; padding: 76px 28px 28px; translate: 100% 0; visibility: hidden; transition: translate .35s var(--ease), visibility 0s .35s; box-shadow: -24px 0 60px -30px rgba(34,35,31,.4); }
+  .nav-links { position: fixed; top: 0; right: 0; bottom: 0; width: min(82vw, 340px); background: var(--paper); z-index: 150; flex-direction: column; align-items: flex-end; justify-content: flex-start; gap: 4px; padding: 76px 28px 28px; translate: 100% 0; visibility: hidden; transition: translate .35s var(--ease), visibility 0s .35s; box-shadow: -24px 0 60px -30px rgba(32,39,31,.4); }
   .nav-links.open { translate: 0 0; visibility: visible; transition: translate .35s var(--ease), visibility 0s; }
   .nav-links a:not(.btn), .nav-links .nav-sub-t { font-size: 18px; font-family: var(--sans); font-weight: 500; }   /* one family in the panel */
   .nav-links .btn { margin-top: var(--s3); }
