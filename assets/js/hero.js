@@ -1,27 +1,33 @@
-/* Hero signature: "Movement" is a mass on a spring.
-   Entry: trajectory computed once from the closed-form solution (zeta 0.5, settle 0.7 s) and played
-   with the Web Animations API (compositor, no rAF on load). Afterwards: stillness, until the visitor
-   drags the word; on release it returns with the pointer's own velocity (Elatirio). */
+/* Hero (18/10): two acts, then one quiet breath.
+   Act 1 (CSS): portrait fades in · "Clarity isn't the goal." slides in left → right · 2 s of stillness ·
+   "Movement" arrives as a mass on a spring (closed-form trajectory, zeta 0.5, settle 0.9 s, played with the
+   Web Animations API on the compositor) · "is." settles.
+   Act 2 (CSS): eyebrow → the line under the title → button → badge.
+   Afterwards only the eyebrow breathes, every 6.47 s (2.47 s motion + 4.00 s rest, ratio φ).
+   The visitor can drag "Movement"; on release it returns with the pointer's own velocity (Elatirio).
+   Off screen, hidden tab or reduced motion = no breathing. */
 (function () {
   'use strict';
   var hero = document.getElementById('top'), w = document.getElementById('moveWord');
   if (!hero || !w) return;
-  var ZETA = .5, TS = .7, DELAY = 680, LIMIT = 72;
+  var ZETA = .5, TS = .9, DELAY = 3700, LIMIT = 72;
   var entered = false;
+  var k = matchMedia('(max-width: 768px), (hover: none)').matches ? .78 : 1;
 
   function entry() {
     hero.classList.add('hero-in');
     if (!w.animate || window.Elatirio.reduced()) { entered = true; return; }
-    var k = matchMedia('(max-width: 768px), (hover: none)').matches ? .78 : 1, x0 = -Math.min(80, hero.clientWidth * .12), wn = Elatirio.wn(ZETA, TS), T = TS * 1.1, frames = [];
+    var x0 = -Math.min(90, hero.clientWidth * .12), wn = Elatirio.wn(ZETA, TS), T = TS * 1.1, frames = [];
     for (var t = 0; t < T; t += .02) frames.push({ transform: 'translateX(' + Elatirio.analytic(ZETA, wn, x0, 0, t).toFixed(2) + 'px)', offset: t / T });
     frames.push({ transform: 'translateX(0px)', offset: 1 });
-    w.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 180, delay: DELAY * k, fill: 'both', easing: 'ease-out' });
+    w.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 420, delay: DELAY * k, fill: 'both', easing: 'ease-out' });
     var a = w.animate(frames, { duration: T * 1000, delay: DELAY * k, fill: 'both', easing: 'linear' });
-    a.onfinish = function () { a.cancel(); entered = true; startLife(); };
+    a.onfinish = function () { a.cancel(); entered = true; };
     a.oncancel = function () { entered = true; };
+    setTimeout(startLife, 5900 * k);   // eyebrow has arrived (5000 + 900 ms)
   }
 
-  var spring = Elatirio.create({ zeta: ZETA, ts: TS, value: 0, precision: .05,
+  var spring = Elatirio.create({ zeta: ZETA, ts: .7, value: 0, precision: .05,
     onUpdate: function (x) { w.style.transform = 'translateX(' + x.toFixed(2) + 'px)'; } });
   var trk = Elatirio.tracker(), drag = false, sx = 0, bx = 0;
   function limited(v) { var a = Math.abs(v); return a <= LIMIT ? v : Math.sign(v) * (LIMIT + (a - LIMIT) * .35); }
@@ -43,49 +49,25 @@
   w.addEventListener('pointerup', release);
   w.addEventListener('pointercancel', release);
 
-  /* ---- life cycle: the hero keeps breathing while it is on screen ----
-     Period 6.47 s split by the golden ratio: 2.47 s of motion, 4.00 s of rest (4.00 / 2.47 = 1.618).
-     t = 0      "Movement" gets a push and returns on its spring (the word does what it says)
-     t = 0      the portrait breathes in and out over the whole active phase (scale 1 → 1.035 → 1)
-     t = 0      the eyebrow rule draws in and out (over 2.47 / φ = 1.53 s)
-     t = 0.94 s (2.47 / φ²) the accreditation badge lifts 6 px and settles
-     t = 1.53 s (2.47 / φ) the main button leans towards the visitor and settles (whole button, never the icon)
-     Off screen, hidden tab, reduced motion or the pause button = no cycle (WCAG 2.2.2, ΜΗ-37). */
-  var PHI = 1.618, ACTIVE = 2470, PERIOD = Math.round(ACTIVE * (1 + PHI)), lifeT = null, onScreen = true, paused = false;
-  var photo = hero.querySelector('.hero-photo img'), btn = hero.querySelector('.h-btn'), eye = hero.querySelector('.h-eye'), chip = hero.querySelector('.h-chip'), tog = document.getElementById('motionToggle');
-  function springFrames(z, ts, x0, prop) {
-    var wn = Elatirio.wn(z, ts), T = ts * 1.15, f = [];
-    for (var t = 0; t < T; t += .02) f.push({ transform: 'translateX(' + Elatirio.analytic(z, wn, x0, 0, t).toFixed(2) + 'px)', offset: t / T });
-    f.push({ transform: 'translateX(0px)', offset: 1 });
-    return { frames: f, ms: T * 1000 };
-  }
-  var kick = null, lean = null;
+  /* ---- the one living element: the eyebrow breathes ----
+     Its rule draws in and out and the label dims and returns, together, over 2.47 s; then 4.00 s of rest. */
+  var PHI = 1.618, ACTIVE = 2470, PERIOD = Math.round(ACTIVE * (1 + PHI)), lifeT = null, onScreen = true;
+  var eye = hero.querySelector('.h-eye'), EASE = 'cubic-bezier(.45,0,.55,1)';
   function pulse() {
-    if (paused || !onScreen || document.hidden || drag) return;
-    kick = kick || springFrames(.45, .9, -Math.min(34, hero.clientWidth * .05));
-    lean = lean || springFrames(.6, .7, 10);
-    w.animate(kick.frames, { duration: kick.ms, easing: 'linear' });
-    if (photo) photo.animate([{ transform: 'translateX(0) scale(1)' }, { transform: 'translateX(-1.4%) scale(1.04)' }, { transform: 'translateX(0) scale(1)' }], { duration: ACTIVE, easing: 'cubic-bezier(.45,0,.55,1)' });
-    if (eye) try { eye.animate([{ transform: 'scaleX(1)' }, { transform: 'scaleX(.35)' }, { transform: 'scaleX(1)' }], { duration: Math.round(ACTIVE / PHI), easing: 'cubic-bezier(.45,0,.55,1)', pseudoElement: '::before' }); } catch (_) { /* older engines: no pseudo-element animation, nothing lost */ }
-    if (chip) chip.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-6px)' }, { transform: 'translateY(0)' }], { duration: Math.round(ACTIVE / PHI), delay: Math.round(ACTIVE / (PHI * PHI)), easing: 'cubic-bezier(.45,0,.55,1)' });
-    if (btn) btn.animate(lean.frames, { duration: lean.ms, delay: Math.round(ACTIVE / PHI), easing: 'linear' });
+    if (!eye || !onScreen || document.hidden) return;
+    eye.animate([{ opacity: 1 }, { opacity: .55 }, { opacity: 1 }], { duration: ACTIVE, easing: EASE });
+    try {
+      eye.animate([{ transform: 'scaleX(1)' }, { transform: 'scaleX(.3)' }, { transform: 'scaleX(1)' }], { duration: ACTIVE, easing: EASE, pseudoElement: '::before' });
+      eye.animate([{ transform: 'scaleX(1)' }, { transform: 'scaleX(.3)' }, { transform: 'scaleX(1)' }], { duration: ACTIVE, easing: EASE, pseudoElement: '::after' });
+    } catch (_) { /* older engines: no pseudo-element animation, the label still breathes */ }
   }
   function startLife() {
     if (lifeT || Elatirio.reduced()) return;
-    lifeT = setTimeout(function () { pulse(); lifeT = setInterval(pulse, PERIOD); }, PERIOD - ACTIVE);   // first breath after one rest (4.0 s)
+    lifeT = setTimeout(function () { pulse(); lifeT = setInterval(pulse, PERIOD); }, PERIOD - ACTIVE);
   }
-  function stopAll() { [w, photo, btn, chip].forEach(function (el) { if (el && el.getAnimations) el.getAnimations().forEach(function (a) { if (!(a instanceof CSSAnimation)) a.cancel(); }); }); }
+  function stopAll() { if (eye && eye.getAnimations) eye.getAnimations({ subtree: true }).forEach(function (a) { if (!(a instanceof CSSAnimation)) a.cancel(); }); }
   if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; if (!onScreen) stopAll(); }, { threshold: .3 }).observe(hero);
   document.addEventListener('visibilitychange', function () { if (document.hidden) stopAll(); });
-  if (tog) {
-    if (Elatirio.reduced()) tog.hidden = true;
-    tog.addEventListener('click', function () {
-      paused = !paused; if (paused) stopAll();
-      tog.setAttribute('aria-pressed', paused ? 'true' : 'false');
-      tog.setAttribute('aria-label', tog.getAttribute(paused ? 'data-play' : 'data-pause'));
-      tog.classList.toggle('is-paused', paused);
-    });
-  }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { requestAnimationFrame(entry); });
   else requestAnimationFrame(entry);

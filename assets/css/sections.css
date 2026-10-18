@@ -12,8 +12,6 @@
 .hero .display { margin-top: var(--s3); color: var(--on-night); }
 .hero-sub { margin-top: var(--s4); max-width: 34ch; }
 .hero-cta { margin-top: var(--s5); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s4); }
-.word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
-.word > span { display: inline-block; }
 .move { display: inline-block; font-style: italic; color: var(--glow); cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .move.grabbing { cursor: grabbing; }
 
@@ -26,40 +24,39 @@
 .photo-chip { position: absolute; bottom: 40px; left: 50%; translate: -50% 0; white-space: nowrap; z-index: 2; background: var(--on-night); color: var(--night); border-radius: 100px; padding: 10px 18px; font-size: var(--t-small); font-weight: 500; }
 .photo-chip .lbl { font-family: var(--mono); font-size: var(--t-label); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-right: 6px; }
 
-/* pause button for the hero life cycle (WCAG 2.2.2) */
-.motion-toggle { position: absolute; right: 20px; bottom: 40px; z-index: 3; width: 44px; height: 44px; border-radius: 50%; background: rgba(28,36,25,.55); color: var(--on-night);
-  display: grid; place-items: center; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: background-color var(--dur-ui) var(--ease-ui); }
-.motion-toggle:hover { background: rgba(28,36,25,.8); }
-.mt-ic { width: 12px; height: 12px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
-.motion-toggle.is-paused .mt-ic { border: 0; width: 0; height: 0; border-left: 11px solid currentColor; border-top: 7px solid transparent; border-bottom: 7px solid transparent; translate: 2px 0; }
-.anim-ready .hero:not(.hero-in) .motion-toggle { opacity: 0; }
-.hero-in .motion-toggle { animation: h-rise 600ms var(--wx-out) both; animation-delay: calc(1900ms * var(--hk)); }
-
-/* ---------- hero timeline: one act at a time (ms × --wx-k on mobile) ----------
-   0 portrait panel opens from the right edge (frame) · 250 eyebrow arrives · 400+70i title words rise through mask
-   · 1150 sub · 1350 button · 1500 link · 1700 chip · 1900 pause control */
+/* ---------- hero timeline (18/10): two acts, unhurried ----------
+   Act 1 · 0     portrait fades in (no zoom, no travel)
+           · 300   "Clarity isn't the goal." slides in left → right (1.4 s)
+           · 2 s of stillness
+           · 3700  "Movement" arrives on its spring (hero.js) · 4000 "is." settles
+   Act 2 · 5000  eyebrow slides in; from then on it alone breathes every 6.47 s (hero.js)
+           · 5600  the line under the title rises slowly (1.8 s), measured to the title's width
+           · 6900  button · 7100 link · 7500 badge
+   Mobile: every time × --wx-k (.78). Reduced motion: final frame at once (base.css). */
 .hero { --hk: var(--wx-k, 1); }
-.hero-in .hero-photo     { animation: h-open 1000ms var(--wx-out) both; }
-.hero-in .hero-photo img { animation: h-window 1700ms cubic-bezier(.25,.74,.22,1) both; }   /* image moves against its panel: a window opening */
-.hero-in .h-eye          { animation: h-from-left 700ms var(--wx-out) both; animation-delay: calc(250ms * var(--hk)); }
-.hero-in .h-eye::before, .hero-in .h-eye::after { transform-origin: right center; animation: h-line 900ms var(--wx-out) both; animation-delay: calc(500ms * var(--hk)); }
+.h-measure { width: fit-content; max-width: 100%; }
+.h-measure .hero-sub { width: 0; min-width: 100%; max-width: none; text-wrap: pretty; }   /* same measure as the title above */
+.h-l1 { display: inline-block; }
+.hero-in .hero-photo { animation: h-fade 1400ms cubic-bezier(.4,0,.2,1) both; }
+.hero-in .h-l1       { animation: h-wipe 1400ms cubic-bezier(.33,0,.15,1) both; animation-delay: calc(300ms * var(--hk)); }
+.hero-in .h-end      { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(4000ms * var(--hk)); }
+.hero-in .h-eye      { animation: h-from-left 900ms var(--wx-out) both; animation-delay: calc(5000ms * var(--hk)); }
+.hero-in .h-eye::before, .hero-in .h-eye::after { transform-origin: right center; animation: h-line 1000ms var(--wx-out) both; animation-delay: calc(5250ms * var(--hk)); }
+.hero-in .h-sub      { animation: h-soft 1800ms cubic-bezier(.25,.6,.3,1) both; animation-delay: calc(5600ms * var(--hk)); }
+.hero-in .h-btn      { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(6900ms * var(--hk)); }
+.hero-in .h-link     { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(7100ms * var(--hk)); }
+.hero-in .h-chip     { animation: h-dock 900ms var(--wx-out) both; animation-delay: calc(7500ms * var(--hk)); }
+.anim-ready .hero:not(.hero-in) :is(.hero-photo, .h-l1, .h-end, .h-eye, .h-sub, .h-btn, .h-link, .h-chip, .move) { opacity: 0; }
 .anim-ready .hero:not(.hero-in) .h-eye::before { transform: scaleX(0); }
-.hero-in .word > span    { animation: h-mask 700ms var(--wx-out) both; animation-delay: calc((400ms + var(--i) * 70ms) * var(--hk)); }
-.hero-in .h-sub          { animation: h-rise 700ms var(--wx-out) both; animation-delay: calc(1150ms * var(--hk)); }
-.hero-in .h-btn          { animation: h-arrive 800ms cubic-bezier(.2,1.01,.3,1) both; animation-delay: calc(1350ms * var(--hk)); }
-.hero-in .h-link         { animation: h-arrive 800ms cubic-bezier(.2,1.01,.3,1) both; animation-delay: calc(1500ms * var(--hk)); }
-.hero-in .h-chip         { animation: h-dock 700ms var(--wx-out) both; animation-delay: calc(1700ms * var(--hk)); }
-.anim-ready .hero:not(.hero-in) .hero-photo { opacity: 0; }
-.anim-ready .hero:not(.hero-in) .word > span { translate: 0 105%; }
+@keyframes h-fade      { from { opacity: 0; } }
+@keyframes h-wipe      { 0% { opacity: 0; translate: -36px 0; clip-path: inset(-12% 100% -24% -6%); } 25% { opacity: 1; }
+                         100% { opacity: 1; translate: 0 0; clip-path: inset(-12% -6% -24% -6%); } }
+@keyframes h-soft      { from { opacity: 0; translate: 0 12px; } }
 @keyframes h-from-left { from { opacity: 0; translate: -28px 0; } }
-@keyframes h-mask      { from { translate: 0 105%; rotate: 3deg; } }
-.word > span { transform-origin: 0 100%; }
-@keyframes h-open      { from { opacity: 0; translate: 24% 0; } }
-@keyframes h-window { from { scale: 1.14; translate: -9% 0; } }
-@keyframes h-rise      { from { opacity: 0; translate: 0 18px; } }
 @keyframes h-line      { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes h-rise      { from { opacity: 0; translate: 0 18px; } }
 @keyframes h-drop      { from { opacity: 0; transform: translate3d(0,-14px,0); } to { opacity: 1; transform: none; } }
-/* the header arrives first, one item after another (logo → links → button), then the hero */
+/* the header arrives first, one item after another (logo → links → button) */
 @media (min-width: 941px) {
   .anim-ready .nav .logo, .anim-ready .nav-links, .anim-ready .nav-cta-desktop { animation: h-drop 700ms var(--wx-out) both; }
   .anim-ready .nav-links { animation-delay: 120ms; }
@@ -214,10 +211,10 @@
   .hero-copy .eyebrow { justify-content: center; }
   .hero-copy .eyebrow::after { content: ""; width: 28px; height: 1px; background: currentColor; }
   .hero-sub { margin-left: auto; margin-right: auto; }
+  .h-measure { margin-left: auto; margin-right: auto; }
   .hero-media { margin-top: var(--s4); }
   .hero-copy .e2 { display: none; }  /* one line, symmetric rules either side */
   .photo-chip { left: 50%; translate: -50% 0; white-space: nowrap; bottom: 20px; }
-  .motion-toggle { bottom: auto; top: 16px; right: 16px; }
   .steps { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .form-panel { padding: var(--s4) var(--s3); }
@@ -227,5 +224,4 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .anim-ready .hero:not(.hero-in) .hero-photo { opacity: 1; }
-  .anim-ready .hero:not(.hero-in) .word > span { translate: none; }
 }
