@@ -4,6 +4,21 @@
    Writes are class toggles on changed elements only, plus one transform for the travelling phrase. */
 (function () {
   'use strict';
+  /* statement lines: one row each, as large as the widest line allows (max 92px). Runs with any motion setting. */
+  (function fit() {
+    var z = document.querySelector('.big.zip'); if (!z) return;
+    function go() {
+      var box = z.parentNode.clientWidth - parseFloat(getComputedStyle(z.parentNode).paddingLeft) * 2;
+      z.style.fontSize = '100px'; var w = 0;
+      [].forEach.call(z.querySelectorAll('.zl'), function (l) {
+        var r = document.createRange(); r.selectNodeContents(l);
+        w = Math.max(w, r.getBoundingClientRect().width + Math.abs(parseFloat(getComputedStyle(l).left) || 0) * 2);
+      });
+      z.style.fontSize = Math.max(18, Math.min(92, Math.floor(100 * box / w))) + 'px';
+    }
+    go(); if (document.fonts) document.fonts.ready.then(go);
+    var t; addEventListener('resize', function () { clearTimeout(t); t = setTimeout(go, 120); }, { passive: true });
+  })();
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
   var vh = window.innerHeight, items = [], active = new Set(), queued = false;
   var mobile = matchMedia('(max-width: 768px)').matches;
@@ -40,6 +55,22 @@
       return { el: el, a: .95, b: .28, set: function (p) {
         var x = Math.round((1 - p * (2 - p)) * (mobile ? 0.55 : 0.6) * window.innerWidth);
         if (x !== last) { em.style.transform = 'translate3d(' + x + 'px,0,0)'; last = x; }
+      } };
+    },
+    /* statement: each line slides in from alternate sides (left, right, left…) and locks to the centre
+       like the teeth of a zipper; line i starts a little after line i-1. Scrolling back opens it again. */
+    zip: function (el) {
+      var ls = [].slice.call(el.querySelectorAll('.zl')); if (!ls.length) return null;
+      el.classList.add('sfx-zip');
+      var n = ls.length, lag = .5 / n, span = 1 - lag * (n - 1), last = [];
+      return { el: el, a: 1, b: mobile ? .3 : .38, set: function (p) {
+        var w = window.innerWidth * (mobile ? .9 : .6);
+        for (var i = 0; i < n; i++) {
+          var q = (p - i * lag) / span; q = q < 0 ? 0 : q > 1 ? 1 : q;
+          var x = Math.round((i % 2 ? 1 : -1) * (1 - ease(q)) * w), o = Math.round((.15 + .85 * q) * 100) / 100;
+          var key = x + '|' + o; if (key === last[i]) continue; last[i] = key;
+          ls[i].style.transform = 'translate3d(' + x + 'px,0,0)'; ls[i].style.opacity = o;
+        }
       } };
     },
     words: function (el) {

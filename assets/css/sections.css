@@ -77,6 +77,17 @@
 .statement .container { text-align: center; }
 .statement .big { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4.6vw, 64px); line-height: 1.1; letter-spacing: -.012em; margin: var(--s4) auto 0; max-width: 22ch; text-wrap: balance; }
 .statement .big em { color: var(--accent); }
+.statement { overflow-x: clip; }
+.statement .big.zip { max-width: none; font-size: clamp(22px, 5.4vw, 92px); line-height: 1.08; text-wrap: nowrap; white-space: nowrap; }
+.statement .zl { display: block; position: relative; left: calc(var(--zo, 0) * var(--zk, 1.6em)); }
+/* resting place: staggered around the centre, not aligned (left, right, left, right, near centre) */
+.statement .zl:nth-child(1) { --zo: -1; }
+.statement .zl:nth-child(2) { --zo: .8; }
+.statement .zl:nth-child(3) { --zo: -.6; }
+.statement .zl:nth-child(4) { --zo: 1; }
+.statement .zl:nth-child(5) { --zo: -.2; }
+@media (max-width: 734px) { .statement .zl { --zk: .45em; } }
+.sfx-zip .zl { will-change: transform, opacity; }
 .statement .rule { margin: var(--s6) auto 0; width: 120px; color: var(--accent); opacity: 1; height: 2px; }
 .statement-foot { margin-top: var(--s4); display: flex; flex-direction: column; align-items: center; gap: var(--s2); }
 .statement-foot .lead { max-width: 52ch; margin: 0 auto; }

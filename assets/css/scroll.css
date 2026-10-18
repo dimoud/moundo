@@ -1,7 +1,8 @@
 /* =========================================================
    The Inward Lab: motion tied to scrolling (18/10) — driven by assets/js/scrollfx.js on every device.
    Progress p (0 → 1) = how far the element has travelled up the screen; scrolling back reverses it.
-   · [data-sfx=em-from-right]  statement: "You want to move." travels in from the right edge to its place
+   · [data-sfx=zip]            statement: one line per phrase, alternate sides, zipped to the centre by the scroll
+   · [data-sfx=em-from-right]  (kept for reuse) a phrase travels in from the right edge to its place
    · [data-sfx=words]          method heading: words come into full light one by one
    · [data-sfx=type]           quote + contact heading: typed out, with a caret, as you scroll
    · [data-sfx=method]         the thread fills across the four steps; each step lights as it is reached
@@ -36,5 +37,5 @@
 html.wdx-js .sfx-method .step [data-v] { visibility: visible !important; animation: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
-  .sfx-em em, .sfx-method .step { transform: none !important; }
+  .sfx-em em, .sfx-method .step, .sfx-zip .zl { transform: none !important; opacity: 1 !important; }
 }
