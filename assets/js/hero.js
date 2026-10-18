@@ -1,5 +1,5 @@
 /* Hero (18/10): two acts, then one quiet breath.
-   Act 1 (CSS): portrait fades in · "Clarity isn't the goal." slides in left → right · 2 s of stillness ·
+   Act 1 (CSS): portrait fades in · "Clarity isn't the goal." slides in left → right · 1 s of stillness ·
    "Movement" arrives as a mass on a spring (closed-form trajectory, zeta 0.5, settle 0.9 s, played with the
    Web Animations API on the compositor) · "is." settles.
    Act 2 (CSS): eyebrow → the line under the title → button → badge.
@@ -10,7 +10,7 @@
   'use strict';
   var hero = document.getElementById('top'), w = document.getElementById('moveWord');
   if (!hero || !w) return;
-  var ZETA = .5, TS = .9, DELAY = 3700, LIMIT = 72;
+  var ZETA = .5, TS = .9, DELAY = 2700, LIMIT = 72;
   var entered = false;
   var k = matchMedia('(max-width: 768px), (hover: none)').matches ? .78 : 1;
 
@@ -24,7 +24,7 @@
     var a = w.animate(frames, { duration: T * 1000, delay: DELAY * k, fill: 'both', easing: 'linear' });
     a.onfinish = function () { a.cancel(); entered = true; };
     a.oncancel = function () { entered = true; };
-    setTimeout(startLife, 5900 * k);   // eyebrow has arrived (5000 + 900 ms)
+    setTimeout(startLife, 4900 * k);   // eyebrow has arrived (4000 + 900 ms)
   }
 
   var spring = Elatirio.create({ zeta: ZETA, ts: .7, value: 0, precision: .05,

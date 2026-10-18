@@ -12,7 +12,7 @@
 .hero .display { margin-top: var(--s3); color: var(--on-night); }
 .hero-sub { margin-top: var(--s4); max-width: 34ch; }
 .hero-cta { margin-top: var(--s5); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s4); }
-.move { display: inline-block; font-style: italic; color: var(--glow); cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.move { display: inline-block; font-style: italic; color: var(--taupe); cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .move.grabbing { cursor: grabbing; }
 
 .hero-media { position: absolute; top: 0; right: 0; bottom: 0; width: 50%; }
@@ -20,18 +20,18 @@
 .hero-photo picture, .hero-photo img { display: block; width: 100%; height: 100%; }
 .hero-photo img { object-fit: cover; object-position: 52% 30%; }
 /* the photo meets the dark page on its left edge (part of the final frame, not an effect) */
-.hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(28,36,25,.6) 0, rgba(28,36,25,0) 120px), linear-gradient(90deg, var(--night) 0%, rgba(28,36,25,.55) 14%, rgba(28,36,25,0) 34%); pointer-events: none; }
+.hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(30,31,27,.6) 0, rgba(30,31,27,0) 120px), linear-gradient(90deg, var(--night) 0%, rgba(30,31,27,.55) 14%, rgba(30,31,27,0) 34%); pointer-events: none; }
 .photo-chip { position: absolute; bottom: 40px; left: 50%; translate: -50% 0; white-space: nowrap; z-index: 2; background: var(--on-night); color: var(--night); border-radius: 100px; padding: 10px 18px; font-size: var(--t-small); font-weight: 500; }
 .photo-chip .lbl { font-family: var(--mono); font-size: var(--t-label); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-right: 6px; }
 
 /* ---------- hero timeline (18/10): two acts, unhurried ----------
    Act 1 · 0     portrait fades in (no zoom, no travel)
            · 300   "Clarity isn't the goal." slides in left → right (1.4 s)
-           · 2 s of stillness
-           · 3700  "Movement" arrives on its spring (hero.js) · 4000 "is." settles
-   Act 2 · 5000  eyebrow slides in; from then on it alone breathes every 6.47 s (hero.js)
-           · 5600  the line under the title rises slowly (1.8 s), measured to the title's width
-           · 6900  button · 7100 link · 7500 badge
+           · 1 s of stillness (18/10: one second sooner)
+           · 2700  "Movement" arrives on its spring (hero.js) · 3000 "is." settles
+   Act 2 · 4000  eyebrow slides in; from then on it alone breathes every 6.47 s (hero.js)
+           · 4600  the line under the title rises slowly (1.8 s), measured to the title's width
+           · 5900  button · 6100 link · 6500 badge
    Mobile: every time × --wx-k (.78). Reduced motion: final frame at once (base.css). */
 .hero { --hk: var(--wx-k, 1); }
 .h-measure { width: fit-content; max-width: 100%; }
@@ -39,13 +39,13 @@
 .h-l1 { display: inline-block; }
 .hero-in .hero-photo { animation: h-fade 1400ms cubic-bezier(.4,0,.2,1) both; }
 .hero-in .h-l1       { animation: h-wipe 1400ms cubic-bezier(.33,0,.15,1) both; animation-delay: calc(300ms * var(--hk)); }
-.hero-in .h-end      { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(4000ms * var(--hk)); }
-.hero-in .h-eye      { animation: h-from-left 900ms var(--wx-out) both; animation-delay: calc(5000ms * var(--hk)); }
-.hero-in .h-eye::before, .hero-in .h-eye::after { transform-origin: right center; animation: h-line 1000ms var(--wx-out) both; animation-delay: calc(5250ms * var(--hk)); }
-.hero-in .h-sub      { animation: h-soft 1800ms cubic-bezier(.25,.6,.3,1) both; animation-delay: calc(5600ms * var(--hk)); }
-.hero-in .h-btn      { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(6900ms * var(--hk)); }
-.hero-in .h-link     { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(7100ms * var(--hk)); }
-.hero-in .h-chip     { animation: h-dock 900ms var(--wx-out) both; animation-delay: calc(7500ms * var(--hk)); }
+.hero-in .h-end      { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(3000ms * var(--hk)); }
+.hero-in .h-eye      { animation: h-from-left 900ms var(--wx-out) both; animation-delay: calc(4000ms * var(--hk)); }
+.hero-in .h-eye::before, .hero-in .h-eye::after { transform-origin: right center; animation: h-line 1000ms var(--wx-out) both; animation-delay: calc(4250ms * var(--hk)); }
+.hero-in .h-sub      { animation: h-soft 1800ms cubic-bezier(.25,.6,.3,1) both; animation-delay: calc(4600ms * var(--hk)); }
+.hero-in .h-btn      { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(5900ms * var(--hk)); }
+.hero-in .h-link     { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(6100ms * var(--hk)); }
+.hero-in .h-chip     { animation: h-dock 900ms var(--wx-out) both; animation-delay: calc(6500ms * var(--hk)); }
 .anim-ready .hero:not(.hero-in) :is(.hero-photo, .h-l1, .h-end, .h-eye, .h-sub, .h-btn, .h-link, .h-chip, .move) { opacity: 0; }
 .anim-ready .hero:not(.hero-in) .h-eye::before { transform: scaleX(0); }
 @keyframes h-fade      { from { opacity: 0; } }
@@ -150,7 +150,7 @@
 .form-foot { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
 .privacy { font-size: var(--t-small); color: var(--on-night-soft); }
 #formStatus { display: none; font-size: var(--t-small); padding: 12px 16px; border-radius: 12px; }
-#formStatus.status-success { background: rgba(197,202,142,.16); color: var(--on-night); }
+#formStatus.status-success { background: rgba(126,130,101,.22); color: var(--on-night); }
 #formStatus.status-error { background: rgba(232,164,140,.16); color: #F6D3C6; }
 
 /* ---------- FAQ ---------- */
@@ -196,7 +196,7 @@
 @media (max-width: 940px) {
   .hero { padding: 104px 0 0; min-height: auto; display: block; }
   .hero-media { position: relative; width: auto; height: auto; aspect-ratio: 762 / 733; margin: var(--s5) calc(var(--gutter) * -1) 0; }
-  .hero-photo::after { background: linear-gradient(180deg, var(--night) 0%, rgba(28,36,25,0) 22%); }
+  .hero-photo::after { background: linear-gradient(180deg, var(--night) 0%, rgba(30,31,27,0) 22%); }
   .hero-grid, .about-grid, .contact-grid, .faq-grid { grid-template-columns: 1fr; gap: var(--s5); }
   .steps { grid-template-columns: 1fr 1fr; row-gap: var(--s5); }
   .ways { grid-template-columns: 1fr; }
