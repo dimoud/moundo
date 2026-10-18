@@ -10,7 +10,7 @@
   'use strict';
   var hero = document.getElementById('top'), w = document.getElementById('moveWord');
   if (!hero || !w) return;
-  var ZETA = .5, TS = .9, DELAY = 2700, LIMIT = 72;
+  var ZETA = .8, TS = 1.8, DELAY = 2700, LIMIT = 72;
   var entered = false;
   var k = matchMedia('(max-width: 768px), (hover: none)').matches ? .78 : 1;
 
@@ -20,14 +20,14 @@
     var x0 = -Math.min(90, hero.clientWidth * .12), wn = Elatirio.wn(ZETA, TS), T = TS * 1.1, frames = [];
     for (var t = 0; t < T; t += .02) frames.push({ transform: 'translateX(' + Elatirio.analytic(ZETA, wn, x0, 0, t).toFixed(2) + 'px)', offset: t / T });
     frames.push({ transform: 'translateX(0px)', offset: 1 });
-    w.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 420, delay: DELAY * k, fill: 'both', easing: 'ease-out' });
+    w.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, delay: DELAY * k, fill: 'both', easing: 'ease-out' });
     var a = w.animate(frames, { duration: T * 1000, delay: DELAY * k, fill: 'both', easing: 'linear' });
     a.onfinish = function () { a.cancel(); entered = true; };
     a.oncancel = function () { entered = true; };
     setTimeout(startLife, 4900 * k);   // eyebrow has arrived (4000 + 900 ms)
   }
 
-  var spring = Elatirio.create({ zeta: ZETA, ts: .7, value: 0, precision: .05,
+  var spring = Elatirio.create({ zeta: ZETA, ts: 1.2, value: 0, precision: .05,
     onUpdate: function (x) { w.style.transform = 'translateX(' + x.toFixed(2) + 'px)'; } });
   var trk = Elatirio.tracker(), drag = false, sx = 0, bx = 0;
   function limited(v) { var a = Math.abs(v); return a <= LIMIT ? v : Math.sign(v) * (LIMIT + (a - LIMIT) * .35); }

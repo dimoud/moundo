@@ -15,7 +15,7 @@
 
 /* states exist only once scrollfx.js has taken an element over (.sfx) */
 .sfx-em em { display: inline-block; will-change: transform; }
-.sfx-words .w { color: rgba(239,235,224,.24); transition: color .45s var(--ease-ui); }
+.sfx-words .w { color: rgba(239,235,224,.24); transition: color .9s var(--ease-ui); }
 .sfx-words .w.on { color: var(--on-night); }
 .sfx-type .c { opacity: 0; }
 .sfx-type .c.on { opacity: 1; }
@@ -25,10 +25,10 @@
 .method-fill.sfx-fill { transform: scaleX(0); }
 .method-fill.sfx-fill::after { content: ""; position: absolute; right: -5px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-radius: 50%;
   background: var(--taupe); box-shadow: 0 0 0 6px rgba(179,182,155,.22); }
-.sfx-method .step { opacity: .32; transform: translateY(14px); transition: opacity .6s var(--ease-ui), transform .6s var(--ease-ui); }
+.sfx-method .step { opacity: .32; transform: translateY(14px); transition: opacity 1.1s var(--ease-ui), transform 1.1s var(--ease-ui); }
 .sfx-method .step .sn { transition: color .4s var(--ease-ui); }
 .sfx-method .step .h3 { position: relative; display: inline-block; }
-.sfx-method .step .h3::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--taupe); transform: scaleX(0); transform-origin: left; transition: transform .8s var(--ease-ui) .15s; }
+.sfx-method .step .h3::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--taupe); transform: scaleX(0); transform-origin: left; transition: transform 1.3s var(--ease-ui) .2s; }
 .sfx-method .step.lit { opacity: 1; transform: none; }
 .sfx-method .step.lit .sn { color: var(--taupe-light); }
 .sfx-method .step.lit .h3::after { transform: scaleX(1); }
