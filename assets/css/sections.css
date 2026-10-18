@@ -37,17 +37,35 @@
 .h-measure { width: fit-content; max-width: 100%; }
 .h-measure .hero-sub { width: 0; min-width: 100%; max-width: none; text-wrap: pretty; }   /* same measure as the title above */
 .h-l1 { display: inline-block; }
-.h-l2 { display: block; margin-top: .32em; }   /* a breath between the two sentences (18/10) */
-.hero-in .hero-photo { animation: h-fade 1400ms cubic-bezier(.4,0,.2,1) both; }
-.hero-in .h-l1       { animation: h-wipe 1400ms cubic-bezier(.33,0,.15,1) both; animation-delay: calc(300ms * var(--hk)); }
-.hero-in .h-end      { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(3000ms * var(--hk)); }
-.hero-in .h-eye      { animation: h-from-left 900ms var(--wx-out) both; animation-delay: calc(4000ms * var(--hk)); }
-.hero-in .h-eye::before, .hero-in .h-eye::after { transform-origin: right center; animation: h-line 1000ms var(--wx-out) both; animation-delay: calc(4250ms * var(--hk)); }
-.hero-in .h-sub      { animation: h-soft 1800ms cubic-bezier(.25,.6,.3,1) both; animation-delay: calc(4600ms * var(--hk)); }
-.hero-in .h-btn      { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(5900ms * var(--hk)); }
-.hero-in .h-link     { animation: h-soft 900ms var(--wx-out) both; animation-delay: calc(6100ms * var(--hk)); }
-.hero-in .h-chip     { animation: h-dock 900ms var(--wx-out) both; animation-delay: calc(6500ms * var(--hk)); }
-.anim-ready .hero:not(.hero-in) :is(.hero-photo, .h-l1, .h-end, .h-eye, .h-sub, .h-btn, .h-link, .h-chip, .move) { opacity: 0; }
+/* Hero choreography (18/10, calm, in three acts — elements of one act move together):
+   Act 1 · 0 ms      portrait, eyebrow and "Clarity isn't the goal." arrive together (1.6 s)
+   Act 2 · 1100 ms   "Movement is" travels as one phrase from far left to its place (2.6 s, no bounce)
+   Act 3 · 3300 ms   line under the title, both buttons and the badge arrive together (1.4 s)
+   Mobile: every time × --wx-k (.78). Reduced motion: final frame at once (base.css). */
+.h-l2 { display: block; margin-top: .22em; font-size: 1.625em; line-height: 1; white-space: nowrap; }
+/* desktop: as large as the space left of the portrait allows (up to +30 %); --r = line width ÷ font size per language */
+.h-l2 { --r: 5.24; }
+html[lang="el"] .h-l2 { --r: 6.44; }
+html[lang="es"] .h-l2 { --r: 6.74; }
+@media (min-width: 941px) {
+  .hero-media { width: 44%; }
+  .h-l2 { font-size: min(1.625em, calc((56vw + 40px - (max(0px, (100vw - 1240px) / 2) + 32px)) / var(--r))); }
+}
+@media (max-width: 734px) {
+  .h-l2 { font-size: min(1.625em, 15.6vw); }
+  html[lang="el"] .h-l2 { font-size: min(1.625em, 12.8vw); }
+  html[lang="es"] .h-l2 { font-size: min(1.625em, 12.4vw); }
+}
+.hero-in :is(.hero-photo, .h-l1, .h-eye) { animation-delay: 0ms; }
+.hero-in .hero-photo { animation: h-fade 1600ms cubic-bezier(.4,0,.2,1) both; }
+.hero-in .h-l1       { animation: h-wipe 1600ms cubic-bezier(.33,0,.15,1) both; }
+.hero-in .h-eye      { animation: h-from-left 1600ms var(--wx-out) both; }
+.hero-in .h-eye::before, .hero-in .h-eye::after { transform-origin: right center; animation: h-line 1600ms var(--wx-out) both; }
+.hero-in .h-l2       { animation: h-travel 2600ms cubic-bezier(.22,.61,.24,1) both; animation-delay: calc(1100ms * var(--hk)); }
+.hero-in :is(.h-sub, .h-btn, .h-link) { animation: h-soft 1400ms var(--wx-out) both; animation-delay: calc(3300ms * var(--hk)); }
+.hero-in .h-chip     { animation: h-dock 1400ms var(--wx-out) both; animation-delay: calc(3300ms * var(--hk)); }
+@keyframes h-travel  { 0% { opacity: 0; translate: -55vw 0; } 35% { opacity: 1; } 100% { opacity: 1; translate: 0 0; } }
+.anim-ready .hero:not(.hero-in) :is(.hero-photo, .h-l1, .h-l2, .h-eye, .h-sub, .h-btn, .h-link, .h-chip) { opacity: 0; }
 .anim-ready .hero:not(.hero-in) .h-eye::before { transform: scaleX(0); }
 @keyframes h-fade      { from { opacity: 0; } }
 @keyframes h-wipe      { 0% { opacity: 0; translate: -36px 0; clip-path: inset(-12% 100% -24% -6%); } 25% { opacity: 1; }

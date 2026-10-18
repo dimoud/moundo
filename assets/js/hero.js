@@ -1,8 +1,4 @@
-/* Hero (18/10): two acts, then one quiet breath.
-   Act 1 (CSS): portrait fades in · "Clarity isn't the goal." slides in left → right · 1 s of stillness ·
-   "Movement" arrives as a mass on a spring (closed-form trajectory, zeta 0.5, settle 0.9 s, played with the
-   Web Animations API on the compositor) · "is." settles.
-   Act 2 (CSS): eyebrow → the line under the title → button → badge.
+/* Hero (18/10): three synchronised acts in CSS (see sections.css), then one quiet breath.
    Afterwards only the eyebrow breathes, every 6.47 s (2.47 s motion + 4.00 s rest, ratio φ).
    The visitor can drag "Movement"; on release it returns with the pointer's own velocity (Elatirio).
    Off screen, hidden tab or reduced motion = no breathing. */
@@ -15,16 +11,10 @@
   var k = matchMedia('(max-width: 768px), (hover: none)').matches ? .78 : 1;
 
   function entry() {
-    hero.classList.add('hero-in');
-    if (!w.animate || window.Elatirio.reduced()) { entered = true; return; }
-    var x0 = -Math.min(90, hero.clientWidth * .12), wn = Elatirio.wn(ZETA, TS), T = TS * 1.1, frames = [];
-    for (var t = 0; t < T; t += .02) frames.push({ transform: 'translateX(' + Elatirio.analytic(ZETA, wn, x0, 0, t).toFixed(2) + 'px)', offset: t / T });
-    frames.push({ transform: 'translateX(0px)', offset: 1 });
-    w.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, delay: DELAY * k, fill: 'both', easing: 'ease-out' });
-    var a = w.animate(frames, { duration: T * 1000, delay: DELAY * k, fill: 'both', easing: 'linear' });
-    a.onfinish = function () { a.cancel(); entered = true; };
-    a.oncancel = function () { entered = true; };
-    setTimeout(startLife, 4900 * k);   // eyebrow has arrived (4000 + 900 ms)
+    hero.classList.add('hero-in');   // the three acts are CSS (sections.css); "Movement is" travels as one phrase
+    if (Elatirio.reduced()) { entered = true; return; }
+    setTimeout(function () { entered = true; }, 3700 * k);   // drag only after the phrase has arrived
+    setTimeout(startLife, 4700 * k);                          // act 3 has settled
   }
 
   var spring = Elatirio.create({ zeta: ZETA, ts: 1.2, value: 0, precision: .05,
